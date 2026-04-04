@@ -15,11 +15,18 @@
     peazip
     rclone-ui
     warehouse
-    lmstudio # ia
     qutebrowser
     protonup-qt
     recorder
     pawncc
-    #net-tools
+    video-trimmer
+    keepassxc
+    appflowy
+    flameshot
+    gnome-logs
+    gnome-clocks
+    gnome-font-viewer
+    gnome-decoder
+    gnome-solanum # Aplicación de temporizador Pomodoro para gestionar el tiempo
   ];
 }

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if command -v pamixer >/dev/null 2>&1; then
+    if [ "$(pamixer --get-mute)" = "true" ]; then
+        echo 0
+    else
+        volume=$(pamixer --get-volume)
+        echo "${volume:-0}"
+    fi
+elif command -v amixer >/dev/null 2>&1; then
+    # Filtramos para obtener solo el número
+    volume=$(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%')
+    echo "${volume:-0}"
+else
+    echo 0
+fi

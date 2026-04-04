@@ -9,7 +9,7 @@ A personal, highly customized NixOS configuration built with **Flakes** and **Ho
 *   **Theming:** [Stylix](https://github.com/danth/stylix) using the **Catppuccin Mocha** palette.
 *   **Icons:** Papirus (Pink variant).
 *   **Cursor:** Custom ManhattanCafe theme.
-*   **Lockscreen:** Hyprlock.
+*   **Lockscreen:** Swaylock.
 *   **Wallpaper Management:** Waypaper.
 
 ## 🚀 Key Features

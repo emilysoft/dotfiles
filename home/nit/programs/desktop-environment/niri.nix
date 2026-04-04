@@ -58,6 +58,10 @@
         };
       };
 
+      spawn-at-startup = [
+        { command = [ "${pkgs.qbittorrent}/bin/qbittorrent" ]; }
+      ];
+
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
@@ -76,7 +80,9 @@
             { app-id = "thunar"; }
             { app-id = "zen-beta"; }
             { app-id = "Alacritty"; }
-            { app-id = "pulseeffects"; }
+            { app-id = "easyeffects"; }
+            { app-id = "obsidian"; }
+            { app-id = "qbittorrent"; }
             { app-id = "elisa"; }
           ];
           default-column-width = { proportion = 1.0; };
@@ -124,6 +130,7 @@
         "Mod+Shift+Y".action.spawn-sh = [ "xdg-open https://www.youtube.com/playlist?list=LL" ];
 
         "Mod+S".action.spawn-sh = [ "fuzzel" ];
+        "Mod+Shift+S".action.spawn-sh = [ "printf 'sticky-notes\nspeedcrunch\nonlyoffice-desktopeditors\nanki\nobsidian' | fuzzel --dmenu |  bash -c" ];
         "Mod+E".action.spawn-sh = [ "thunar" ];
         "Mod+Shift+E".action.spawn-sh = [ "zen-beta" ];
         "Mod+X".action.spawn-sh = [ "alacritty" ];

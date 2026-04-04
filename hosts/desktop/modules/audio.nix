@@ -3,7 +3,6 @@
 
   environment.systemPackages = with pkgs; [
     alsa-utils
-    pulseeffects-legacy
   ];
 
   services.pipewire = {

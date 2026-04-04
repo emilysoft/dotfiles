@@ -1,33 +1,15 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 {
   imports = [
-    ./pkgs/packages.nix
+    ./programs/default.nix
     ./mimeapps.nix
-    ./niri/niri.nix
-    ./stylix.nix
     ./services/services.nix
   ];
 
-  home.username = "nit";
-  home.homeDirectory = "/home/nit";
-  home.stateVersion = "25.11";
-
-  home.pointerCursor = {
-    package = pkgs.manhattan-cafe;
-    name = "ManhattanCafe";
-    size = 24;
-    gtk.enable = true;
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme.package = pkgs.papirus-icon-theme.override { color = "pink"; };
-    iconTheme.name = "Papirus-Dark";
-  };
-
-  home.sessionVariables = {
-    EDITOR = "${pkgs.neovim}/bin/nvim";
-    TERMINAL = "${pkgs.alacritty-graphics}/bin/alacritty";
+  home = {
+    username = "nit";
+    homeDirectory = "/home/nit";
+    stateVersion = "25.11";
   };
 
   programs.git = {
@@ -39,5 +21,20 @@
       };
     };
   };
+
   programs.home-manager.enable = true;
+  programs.opencode.enable = true;
+
+  home.sessionVariables = {
+    EDITOR = "${pkgs.neovim}/bin/nvim";
+    TERMINAL = "${pkgs.alacritty-graphics}/bin/alacritty";
+    GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
+      pkgs.gst_all_1.gstreamer
+      pkgs.gst_all_1.gst-plugins-base
+      pkgs.gst_all_1.gst-plugins-good
+      pkgs.gst_all_1.gst-plugins-bad
+      pkgs.gst_all_1.gst-plugins-ugly
+      pkgs.gst_all_1.gst-libav
+    ];
+  };
 }

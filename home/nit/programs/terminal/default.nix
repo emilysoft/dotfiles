@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./alacritty.nix
+  ];
+
   home.packages = with pkgs; [
     sherlock # Herramienta para buscar perfiles de usuario en múltiples redes sociales
     yazi
@@ -25,5 +29,9 @@
     ffmpeg # Marco multimedia para procesar, convertir y transmitir audio/video
     yt-dlp # Descargador de videos de YouTube y otros sitios (sucesor de youtube-dl)
     sorter
+    eza
+    zellij
+    lazygit
+    tmux
   ];
 }

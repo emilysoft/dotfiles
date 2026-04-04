@@ -29,6 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixcord = {
+      url = "github:FlameFlag/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     elyprismlauncher = {
       url = "github:ElyPrismLauncher/ElyPrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,44 +44,51 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
   outputs = { nixpkgs, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      shared-overlays = [
-        inputs.niri.overlays.niri
-        inputs.nix-cachyos-kernel.overlays.pinned
-        (import ./home/nit/pkgs/default.nix)
-      ];
-    in
-    {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            home-manager.nixosModules.home-manager
-            ./hosts/desktop/configuration.nix
-            {
-              nixpkgs = {
-                config.allowUnfree = true;
-                overlays = shared-overlays;
+  let
+    system = "x86_64-linux";
+    shared-overlays = [
+      inputs.niri.overlays.niri
+      inputs.nix-cachyos-kernel.overlays.pinned
+      (import ./home/nit/programs/overlays.nix)
+    ];
+  in
+  {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          home-manager.nixosModules.home-manager
+          ./hosts/desktop/configuration.nix
+          {
+            nixpkgs = {
+              overlays = shared-overlays;
+              config = {
+                allowUnfree = true;
+                joypixels.acceptLicense = true;
+                allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+                  "joypixels"
+                ];
               };
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users.nit = {
-                  imports = [
-                    inputs.spicetify-nix.homeManagerModules.default
-                    inputs.stylix.homeModules.stylix
-                    inputs.niri.homeModules.niri
-                    ./home/nit/home.nix
-                  ];
-                };
+            };
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.nit = {
+                imports = [
+                  inputs.spicetify-nix.homeManagerModules.default
+                  inputs.stylix.homeModules.stylix
+                  inputs.niri.homeModules.niri
+                  inputs.nixcord.homeModules.nixcord
+                  ./home/nit/home.nix
+                ];
               };
-            }
-          ];
-        };
+            };
+          }
+        ];
       };
     };
+  };
 }

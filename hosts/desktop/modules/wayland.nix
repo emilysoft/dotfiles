@@ -58,6 +58,8 @@
     VDPAU_DRIVER = "va_gl";
     ELECTRON_FLAGS = "--disable-gpu-compositing --disable-gpu-rasterization";
     WLR_DRM_DEVICES = "/dev/dri/by-path/pci-0000:00:02.0-render";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   # Necesario para que las apps encuentren el servicio en Wayland/Hyprland

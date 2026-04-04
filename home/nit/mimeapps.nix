@@ -49,6 +49,8 @@
       "x-scheme-handler/gitkraken" = [ "GitKraken.desktop" ];
       "x-scheme-handler/notion" = [ "Notion.desktop" ];
       "x-scheme-handler/mailto" = [ "zen-beta.desktop" ];
+      "x-scheme-handler/terminal" = [ "alacritty.desktop" ];
+      "terminal-emulator" = [ "alacritty.desktop" ];
     };
 
     # Asociaciones añadidas (aparecen en el menú "Abrir con...")

@@ -6,7 +6,6 @@
     ./modules/wayland.nix
     ./modules/audio.nix
     ./modules/disk.nix
-    ./modules/enviroment.nix
     ./modules/fonts.nix
     ./modules/file-manager.nix
     ./modules/networking.nix
@@ -16,6 +15,8 @@
 
   documentation.man.generateCaches = false;
   users.users.nit.shell = pkgs.fish;
+
+  security.rtkit.enable = true;
 
   programs = {
     fish.enable       = true;
@@ -35,6 +36,13 @@
     group = "users";
     home =  "/var/lib/discord-bots";
   };
+
+  # discord bots depedencies
+  environment.systemPackages = with pkgs; [
+    pnpm
+    nodejs_latest
+    typescript
+  ];
 
   programs.dconf.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
