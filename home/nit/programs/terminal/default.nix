@@ -1,8 +1,9 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./alacritty.nix
   ];
+
+  programs.rmpc.enable = true;
 
   home.packages = with pkgs; [
     sherlock # Herramienta para buscar perfiles de usuario en múltiples redes sociales
@@ -33,5 +34,7 @@
     zellij
     lazygit
     tmux
+    cmatrix
+    ghostty
   ];
 }

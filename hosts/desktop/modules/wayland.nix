@@ -1,5 +1,10 @@
-{ inputs, pkgs, config, lib, ... }:
 {
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -8,7 +13,7 @@
   xdg.portal = {
     wlr.enable = true;
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   environment.systemPackages = with pkgs; [
@@ -39,7 +44,7 @@
     playerctl # Utilidad de línea de comandos para controlar reproductores de medios compatibles con MPRIS
   ];
 
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = ["modesetting"];
 
   hardware.graphics = {
     enable32Bit = true;
@@ -65,5 +70,4 @@
   # Necesario para que las apps encuentren el servicio en Wayland/Hyprland
   services.dbus.enable = true;
   programs.xwayland.enable = true;
-
 }

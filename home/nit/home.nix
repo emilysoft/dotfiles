@@ -1,7 +1,16 @@
-{ inputs, pkgs, lib, ... }:
 {
+  inputs,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
-    ./programs/default.nix
+    inputs.sops-nix.homeManagerModules.sops
+    inputs.spicetify-nix.homeManagerModules.default
+    inputs.stylix.homeModules.stylix
+    inputs.niri.homeModules.niri
+    inputs.nixcord.homeModules.nixcord
+    ./programs
     ./mimeapps.nix
     ./services/services.nix
   ];

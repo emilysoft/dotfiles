@@ -1,15 +1,16 @@
-{ pkgs, ... }:
-let
-  workingDirectory = "/var/lib/discord-bots/neetoons-bot";
-in
 {
-
+  config,
+  pkgs,
+  ...
+}: let
+  workingDirectory = "/var/lib/discord-bots/neetoons-bot";
+in {
   systemd.services.neetoons-bot = {
     enable = true;
     description = "Discord Bot: Neetoons";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+    wantedBy = ["multi-user.target"];
 
     serviceConfig = {
       User = "discord-bot";
@@ -19,7 +20,7 @@ in
         ${pkgs.nodejs_latest}/bin/node .
       '';
 
-      EnvironmentFile = "${workingDirectory}/.env";
+      EnvironmentFile = config.sops.secrets."discord_bots/neetoons/environmentFile".path;
       Restart = "on-failure";
       RestartSec = 5;
       NoNewPrivileges = true;

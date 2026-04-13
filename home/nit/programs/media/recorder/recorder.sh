@@ -1,4 +1,4 @@
-#/run/current-system/sw/bin/bash
+#!/usr/bin/env bash
 #
 # Script de grabación de pantalla y audio usando wf-recorder, fuzzel, y slurp.
 # Requisito: Instalar wf-recorder (nix-shell -p wf-recorder)

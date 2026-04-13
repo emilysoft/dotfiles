@@ -1,17 +1,22 @@
-{ inputs, pkgs, lib, ... }:
 {
+  inputs,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.alacritty = {
     enable = true;
     package = pkgs.alacritty-graphics;
     settings = lib.mkForce {
       window = {
-        opacity = 0.7;
-        blur = true;
+        #opacity = 0.9;
+        #blur = true;
       };
 
       colors = {
         primary = {
-          background = "#000000";
+          #background = "#000000";
+          background = "#1c1c2b";
           foreground = "#cdd6f4";
           dim_foreground = "#cdd6f4";
           bright_foreground = "#cdd6f4";

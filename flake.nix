@@ -2,10 +2,16 @@
   description = "Nit's NixOS configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -44,44 +50,45 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, home-manager, ... }@inputs:
-  let
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     shared-overlays = [
       inputs.niri.overlays.niri
       inputs.nix-cachyos-kernel.overlays.pinned
       (import ./home/nit/programs/overlays.nix)
     ];
-  in
-  {
+  in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           home-manager.nixosModules.home-manager
           ./hosts/desktop/configuration.nix
           {
+            #FIXME Due to a CVE-2024-27297 vulnerability, this has been temporarily placed.
+            nix.package = inputs.nixpkgs-unstable.legacyPackages.${system}.nix;
             nixpkgs = {
               overlays = shared-overlays;
               config = {
                 allowUnfree = true;
                 joypixels.acceptLicense = true;
-                allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-                  "joypixels"
-                ];
+                allowUnfreePredicate = pkg:
+                  builtins.elem (nixpkgs.lib.getName pkg) [
+                    "joypixels"
+                  ];
               };
             };
 
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = {inherit inputs;};
               users.nit = {
                 imports = [
-                  inputs.spicetify-nix.homeManagerModules.default
-                  inputs.stylix.homeModules.stylix
-                  inputs.niri.homeModules.niri
-                  inputs.nixcord.homeModules.nixcord
                   ./home/nit/home.nix
                 ];
               };

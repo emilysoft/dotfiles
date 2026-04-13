@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Bootloader
   boot.loader.timeout = 3;
   boot.loader.grub = {
@@ -10,7 +9,7 @@
   # Storage optimization
   nix = {
     optimise.automatic = true;
-    optimise.dates = [ "04:00" ];
+    optimise.dates = ["04:00"];
     settings = {
       download-buffer-size = 524288000;
       auto-optimise-store = false;

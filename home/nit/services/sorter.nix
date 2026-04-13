@@ -1,4 +1,8 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   systemd.user.services.sorter = {
     Unit = {
       Description = "sort download files";
@@ -25,6 +29,6 @@
       OnCalendar = "*:0/5";
       Persistent = true;
     };
-    Install.WantedBy = [ "timers.target" ];
+    Install.WantedBy = ["timers.target"];
   };
 }

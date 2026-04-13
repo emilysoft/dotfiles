@@ -1,10 +1,11 @@
 {
- programs.mpvpaper = {
-  enable = true;
-  pauseList = ''
-    steam
-    discord
-    vesktop
-  '';
- };
+  programs.mpvpaper = {
+    enable = true;
+    pauseList = ''
+      steam
+      discord
+      lutris
+      vesktop
+    '';
+  };
 }

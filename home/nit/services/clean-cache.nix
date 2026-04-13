@@ -1,4 +1,8 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   systemd.user.services.clean-cache = {
     Unit = {
       Description = "Clean Spotify cache storage";
@@ -26,6 +30,6 @@
       OnCalendar = "daily";
       Persistent = true;
     };
-    Install.WantedBy = [ "timers.target" ];
+    Install.WantedBy = ["timers.target"];
   };
 }

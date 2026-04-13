@@ -1,17 +1,7 @@
 #!/bin/bash
 
-# ==============================================================================
-# 0. CONSTANTE DE TIEMPO (15 minutos en segundos)
-# ==============================================================================
-# 15 minutos * 60 segundos/minuto = 900 segundos
-# Este es el tiempo MINIMO que debe haber pasado desde la CREACIÓN/MODIFICACIÓN
-# para que un archivo sea considerado "seguro" para mover.
 TIEMPO_MINIMO_SEGUNDOS=900
 
-# ==============================================================================
-# 1. FUNCIÓN DE COMPROBACIÓN DE ANTIGÜEDAD
-# ==============================================================================
-# Comprueba si el archivo tiene al menos TIEMPO_MINIMO_SEGUNDOS de antigüedad
 es_archivo_antiguo_minimo() {
   local archivo="$1"
   local tiempo_minimo="$2" # Tiempo en segundos
@@ -28,15 +18,8 @@ es_archivo_antiguo_minimo() {
   # Obtener la marca de tiempo (epoch) de la última modificación (mTime) del archivo
   # En Linux (GNU stat): %Y
   local mtime_epoch=$(stat -c %Y "$archivo")
-
-  # En macOS (BSD stat): -f %m
-  # Si estás usando macOS, deberías cambiar la línea anterior por:
-  # local mtime_epoch=$(stat -f %m "$archivo")
-
   # Obtener el tiempo actual (epoch)
   local tiempo_actual_epoch=$(date +%s)
-
-  # Calcular la antigüedad del archivo en segundos
   local antiguedad=$((tiempo_actual_epoch - mtime_epoch))
 
   # Comparar: si la antigüedad es MAYOR o IGUAL al tiempo mínimo, retorna 0 (éxito/verdadero)
@@ -81,9 +64,7 @@ mover_seguro() {
   # echo "Movido: '$origen' -> '$nuevo_destino'"
 }
 
-# ==============================================================================
 # 3. CREACIÓN DE DIRECTORIOS
-# ==============================================================================
 # (El código de esta sección es idéntico al original, no necesita cambios)
 mkdir -p "1. Video"
 mkdir -p "2. Images/PSD"
@@ -98,7 +79,6 @@ mkdir -p "Scripts/Bash"
 mkdir -p "Scripts/Batch"
 mkdir -p "Scripts/Lua"
 mkdir -p "Scripts/Python"
-# ... (rest of mkdir -p commands)
 mkdir -p "Scripts/AutoHotkey"
 mkdir -p "Scripts/Pawn"
 mkdir -p "7. Executables"
@@ -113,9 +93,7 @@ mkdir -p "GameFiles/SAMP"
 mkdir -p "GameFiles/Other"
 mkdir -p "3DModels"
 
-# ==============================================================================
 # 4. MOVIMIENTO DE ARCHIVOS (Con Comprobación de Antigüedad)
-# ==============================================================================
 
 # Mover archivos a sus respectivos directorios usando la función mover_seguro
 for file in *; do
@@ -224,16 +202,12 @@ for file in *; do
         mover_seguro "$file" "Miscellaneous"
         ;; # ¡IMPORTANTE! He añadido esta opción para capturar el resto
       esac
-    fi # Fin de la comprobación de antigüedad
+    fi
   fi
 done
 
-# ==============================================================================
 # 5. LIMPIEZA Y FINALIZACIÓN
-# ==============================================================================
-# (El código de esta sección es idéntico al original, no necesita cambios)
 find . -depth -type d -empty -delete
 find . -depth -type d -empty -delete
-chown -R nit:users .
 
 echo "✅ ¡Archivos organizados con éxito! Se evitaron todas las sobreescrituras y se respetó la antigüedad de 15 minutos."

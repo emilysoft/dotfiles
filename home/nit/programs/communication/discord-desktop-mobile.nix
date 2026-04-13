@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{pkgs, ...}:
 pkgs.buildNpmPackage rec {
   name = "discord-desktop-mobile";
   src = pkgs.fetchFromGitHub {
@@ -38,5 +38,4 @@ pkgs.buildNpmPackage rec {
   env = {
     ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
   };
-
 }

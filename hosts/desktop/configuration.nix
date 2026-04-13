@@ -1,7 +1,13 @@
-{ pkgs, config, ... }:
 {
+  inputs,
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
+    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
+    ./sops.nix
     ./modules/greetd.nix
     ./modules/wayland.nix
     ./modules/audio.nix
@@ -13,28 +19,30 @@
     ./modules/services/services.nix
   ];
 
-  documentation.man.generateCaches = false;
-  users.users.nit.shell = pkgs.fish;
-
-  security.rtkit.enable = true;
-
-  programs = {
-    fish.enable       = true;
-    gamemode.enable   = true;
-    localsend.enable  = true;
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nit = {
     isNormalUser = true;
     description = "Nit's Desktop";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" ];
+    extraGroups = ["networkmanager" "wheel" "video" "render"];
+    shell = pkgs.fish;
   };
 
   users.users.discord-bot = {
     isSystemUser = true;
     group = "users";
-    home =  "/var/lib/discord-bots";
+    home = "/var/lib/discord-bots";
+  };
+
+  programs = {
+    fish.enable = true;
+    gamemode.enable = true;
+    localsend.enable = true;
+    dconf.enable = true;
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-gnome3;
+      enableSSHSupport = true;
+    };
   };
 
   # discord bots depedencies
@@ -44,9 +52,12 @@
     typescript
   ];
 
-  programs.dconf.enable = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "root" "nit" ];
+  documentation.man.generateCaches = false;
+  security.rtkit.enable = true;
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.trusted-users = ["root"];
+
   time.timeZone = "America/Caracas";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {

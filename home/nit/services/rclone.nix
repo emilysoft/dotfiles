@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   systemd.user.services.rclone = {
     Unit = {
       Description = "Rclone";
-      After = [ "network-online.target" "graphical-session.target" ];
+      After = ["network-online.target" "graphical-session.target"];
     };
 
     Service = {
@@ -20,7 +23,7 @@
     };
 
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = ["graphical-session.target"];
     };
   };
 }

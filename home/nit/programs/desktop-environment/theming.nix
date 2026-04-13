@@ -1,17 +1,16 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   gtk = {
     enable = true;
     colorScheme = "dark";
-    iconTheme.package = pkgs.papirus-icon-theme.override { color = "pink"; };
+    iconTheme.package = pkgs.papirus-icon-theme.override {color = "pink";};
     iconTheme.name = "Papirus-Dark";
   };
 
   home.pointerCursor = {
-      package = pkgs.manhattan-cafe;
-      name = "ManhattanCafe";
-      size = 24;
-      gtk.enable = true;
+    package = pkgs.manhattan-cafe;
+    name = "ManhattanCafe";
+    size = 24;
+    gtk.enable = true;
   };
 
   stylix = {
@@ -35,7 +34,7 @@
         package = pkgs.geist-font;
         name = "Geist Sans";
       };
-            emoji = {
+      emoji = {
         #package = pkgs.twitter-color-emoji;
         package = pkgs.joypixels;
         #name = "Twitter Color Emoji";

@@ -1,14 +1,12 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   wallpapers = "${pkgs.assets}/share/assets/wallpapers";
   wallpaper = "${pkgs.assets}/share/assets/wallpapers/1.jpg";
-in
-{
+in {
   systemd.user.services.waypaper = {
     Unit = {
       Description = "waypaper service";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = ["graphical-session.target"];
+      PartOf = ["graphical-session.target"];
     };
 
     Service = {
@@ -20,7 +18,7 @@ in
     };
 
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = ["graphical-session.target"];
     };
   };
 }

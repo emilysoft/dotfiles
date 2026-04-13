@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   src = pkgs.fetchFromGitHub {
     owner = "neetoons";
     repo = "discord-rpc-manager";
@@ -35,7 +38,7 @@ let
       pkgs.makeWrapper
     ];
 
-    buildInputs = [ pkgs.gjs pkgs.gtk4 pkgs.libadwaita ];
+    buildInputs = [pkgs.gjs pkgs.gtk4 pkgs.libadwaita];
 
     buildPhase = ''
       blueprint-compiler compile app/main.blp --output app/main.ui
@@ -51,15 +54,14 @@ let
         --prefix GI_TYPELIB_PATH : "$GI_TYPELIB_PATH"
     '';
   };
-in
-{
-  home.packages = [ discord-rpc-gtk discord-rpc-daemon ];
+in {
+  home.packages = [discord-rpc-gtk discord-rpc-daemon];
 
   systemd.user.services.discord-rpc-daemon = {
     Unit = {
       Description = "Discord RPC Mood Manager Daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = ["graphical-session.target"];
+      PartOf = ["graphical-session.target"];
     };
 
     Service = {
@@ -70,7 +72,7 @@ in
       RestartSec = "10s";
     };
 
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = ["graphical-session.target"];
   };
 
   xdg.desktopEntries.discord-rpc-manager = {
@@ -80,7 +82,7 @@ in
     exec = "discord-rpc-gtk";
     icon = "discord";
     terminal = false;
-    categories = [ "Settings" "Network" ];
+    categories = ["Settings" "Network"];
     startupNotify = true;
   };
 }

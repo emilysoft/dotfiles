@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
-    ./vesktop.nix
+    #./vesktop.nix
   ];
 
   home.packages = with pkgs; [

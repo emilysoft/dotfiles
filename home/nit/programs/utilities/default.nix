@@ -1,7 +1,10 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
+    sops
+    age
+    gnupg
     waypaper
+    sunpaper
     anki-bin # Programa de tarjetas de memoria (flashcards) para el aprendizaje
     bleachbit # Herramienta de limpieza del sistema para liberar espacio y preservar la privacidad
     contrast # Herramienta para verificar el contraste de colores para la accesibilidad web
@@ -13,6 +16,7 @@
     nicotine-plus # Cliente para la red de intercambio de archivos Soulseek (SLSK)
     p7zip # Utilidad para comprimir y descomprimir archivos en formato 7z
     peazip
+    zstd
     rclone-ui
     warehouse
     qutebrowser
@@ -28,5 +32,6 @@
     gnome-font-viewer
     gnome-decoder
     gnome-solanum # Aplicación de temporizador Pomodoro para gestionar el tiempo
+    protonvpn-gui
   ];
 }
