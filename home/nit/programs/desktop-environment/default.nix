@@ -8,4 +8,9 @@
     ./mpvpaper.nix
     ./theming.nix
   ];
+
+  home.packages = [
+    # pw-play lib
+    pkgs.libcanberra
+  ];
 }

@@ -1,7 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   gtk = {
     enable = true;
     colorScheme = "dark";
+    gtk4.theme = config.gtk.theme;
     iconTheme.package = pkgs.papirus-icon-theme.override {color = "pink";};
     iconTheme.name = "Papirus-Dark";
   };
@@ -16,7 +21,6 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    targets.mangohud.enable = false;
     targets.vesktop.enable = false;
     polarity = "dark";
     fonts = {

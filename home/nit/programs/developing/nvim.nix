@@ -4,5 +4,6 @@
     ripgrep
     lua-language-server
     alejandra
+    gcc
   ];
 }

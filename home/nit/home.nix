@@ -15,6 +15,9 @@
     ./services/services.nix
   ];
 
+  #programs
+  mis-modulos.profile-principal.enable = true;
+
   home = {
     username = "nit";
     homeDirectory = "/home/nit";

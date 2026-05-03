@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
     owner = "neetoons";
     repo = "dotfiles";
     rev = "assets";
-    sha256 = "sha256-RZ/35WzFDEy4Sk7nSnUoU2Bx16w4N4bHLZFxnErtvt8=";
+    sha256 = "sha256-VHk5tom8qRpCSMLSrsJYbUT7GJFryDlV1qkpPiaFxQA=";
   };
 
   installPhase = ''

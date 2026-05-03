@@ -5,6 +5,7 @@
 }: let
   workingDirectory = "/var/lib/discord-bots/neetoons-bot";
 in {
+  sops.secrets."discord_bots/neetoons/environmentFile" = {};
   systemd.services.neetoons-bot = {
     enable = true;
     description = "Discord Bot: Neetoons";

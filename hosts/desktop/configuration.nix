@@ -45,14 +45,17 @@
     };
   };
 
+  networking.firewall.allowedTCPPorts = [22]; # ssh server
+
   # discord bots depedencies
   environment.systemPackages = with pkgs; [
     pnpm
     nodejs_latest
     typescript
+    gcc
   ];
 
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
   security.rtkit.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

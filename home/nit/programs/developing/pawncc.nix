@@ -11,9 +11,10 @@ pkgs.multiStdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-DCMAKE_BUILD_TYPE=Release"
-    "-DCMAKE_C_FLAGS=-m32"
+    "-DCMAKE_C_FLAGS=-m32 -Wno-error=format-security -Wno-error=format"
     "-DCMAKE_SOURCE_DIR=source/compiler"
     "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+    "-DCMAKE_C_STANDARD=99"
   ];
 
   nativeBuildInputs = with pkgs; [

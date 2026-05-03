@@ -1,12 +1,11 @@
 {
   description = "Nit's NixOS configuration";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -21,7 +20,7 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -69,8 +68,6 @@
           home-manager.nixosModules.home-manager
           ./hosts/desktop/configuration.nix
           {
-            #FIXME Due to a CVE-2024-27297 vulnerability, this has been temporarily placed.
-            nix.package = inputs.nixpkgs-unstable.legacyPackages.${system}.nix;
             nixpkgs = {
               overlays = shared-overlays;
               config = {

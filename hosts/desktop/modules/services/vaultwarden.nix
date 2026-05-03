@@ -5,6 +5,12 @@
 }: let
   backupScript = pkgs.writeShellScriptBin "vaultwarden-backup-script" (builtins.readFile ./vault_backup.sh);
 in {
+  sops.secrets = {
+    "vaultwarden_key" = {};
+    "vaultwarden-backup-env" = {
+      owner = "nit";
+    };
+  };
   networking.firewall.trustedInterfaces = ["tailscale0"];
 
   services.vaultwarden = {

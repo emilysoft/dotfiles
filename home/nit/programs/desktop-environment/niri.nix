@@ -4,7 +4,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  volume_control = "${pkgs.assets}/share/assets/sounds/volume_control.mp3";
+in {
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -152,12 +154,12 @@
 
         "Mod+S".action.spawn-sh = ["fuzzel"];
         "Mod+Shift+S".action.spawn-sh = [
-          "printf 'sticky-notes\n\
-          speedcrunch\n\
-          onlyoffice-desktopeditors\n\
-          anki\n\
-          lorien\n\
-          readest\n\
+          "printf 'sticky-notes \
+          speedcrunch \
+          onlyoffice-desktopeditors \
+          anki \
+          lorien \
+          readest \
           obsidian' | fuzzel --dmenu |  bash -c"
         ];
         "Mod+E".action.spawn-sh = ["thunar"];
@@ -165,8 +167,9 @@
         "Mod+X".action.spawn-sh = ["alacritty"];
         "Mod+Shift+X".action.spawn-sh = ["alacritty -e zellij"];
         "Mod+T".action.spawn-sh = ["cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"];
-        "Mod+KP_Up".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0"];
-        "Mod+KP_Down".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"];
+        #FIXME remove the hardcode
+        "Mod+KP_Up".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0 && pw-play ${volume_control}"];
+        "Mod+KP_Down".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pw-play ${volume_control}"];
 
         "Mod+Shift+KP_End".action.spawn-sh = ["mpv '${config.xdg.configHome}/Downloads/5. Audio/fah.ogg'"];
         "Mod+Shift+KP_Down".action.spawn-sh = ["mpv '${config.xdg.configHome}/Downloads/5. Audio/stfu.mp3'"];

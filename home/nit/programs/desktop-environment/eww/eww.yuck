@@ -129,7 +129,7 @@
 ;;                "scripts/volume.sh")
 
 (defpoll time :interval "10s"
-  "date '+%a %d  %I:%M %^p'")
+  "date '+%a. %d  %I:%M %^p'")
 
 (defpoll memory :interval "2s"
   `free | grep Mem | awk '{printf "   %.1f%", $3/$2 * 100.0}'

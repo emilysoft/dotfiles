@@ -4,28 +4,16 @@
     display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
   in {
     enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.procps}/bin/pkill -STOP mpvpaper; ${pkgs.systemd}/bin/systemctl --user stop gammastep;";
-      }
-      {
-        event = "unlock";
-        command = "${pkgs.procps}/bin/pkill -CONT mpvpaper; ${pkgs.systemd}/bin/systemctl --user start gammastep";
-      }
-      {
-        event = "after-resume";
-        command = "${pkgs.procps}/bin/pkill -CONT mpvpaper";
-      }
-      {
-        event = "lock";
-        command = "${pkgs.procps}/bin/pkill -STOP mpvpaper";
-      }
-    ];
+    events = {
+      before-sleep = "${pkgs.procps}/bin/pkill -STOP mpvpaper; ${pkgs.systemd}/bin/systemctl --user stop gammastep;";
+      unlock = "${pkgs.procps}/bin/pkill -CONT mpvpaper; ${pkgs.systemd}/bin/systemctl --user start gammastep";
+      after-resume = "${pkgs.procps}/bin/pkill -CONT mpvpaper";
+      lock = "${pkgs.procps}/bin/pkill -STOP mpvpaper";
+    };
 
     timeouts = [
       {
-        timeout = 600; # in seconds
+        timeout = 600;
         command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
       }
       {

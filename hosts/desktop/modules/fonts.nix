@@ -3,5 +3,6 @@
     noto-fonts
     nerd-fonts.iosevka
     dejavu_fonts
+    corefonts
   ];
 }

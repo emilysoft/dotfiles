@@ -1,37 +1,43 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    sops
-    age
-    gnupg
-    waypaper
-    sunpaper
-    anki-bin # Programa de tarjetas de memoria (flashcards) para el aprendizaje
-    bleachbit # Herramienta de limpieza del sistema para liberar espacio y preservar la privacidad
-    contrast # Herramienta para verificar el contraste de colores para la accesibilidad web
-    wordbook # Aplicación para aprender y gestionar vocabulario
-    dialect # Aplicación simple de traducción de idiomas
-    rofimoji
-    pika-backup # Herramienta de copia de seguridad simple basada en BorgBackup
-    qbittorrent # Cliente BitTorrent moderno y liviano
-    nicotine-plus # Cliente para la red de intercambio de archivos Soulseek (SLSK)
-    p7zip # Utilidad para comprimir y descomprimir archivos en formato 7z
-    peazip
-    zstd
-    rclone-ui
-    warehouse
-    qutebrowser
-    protonup-qt
-    recorder
-    pawncc
-    video-trimmer
-    keepassxc
-    appflowy
-    flameshot
-    gnome-logs
-    gnome-clocks
-    gnome-font-viewer
-    gnome-decoder
-    gnome-solanum # Aplicación de temporizador Pomodoro para gestionar el tiempo
-    protonvpn-gui
-  ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  enabled = config.mis-modulos.profile-principal.enable;
+in {
+  config = lib.mkIf enabled {
+    home.packages = with pkgs; [
+      waypaper
+      anki-bin # Programa de tarjetas de memoria (flashcards) para el aprendizaje
+      bleachbit # Herramienta de limpieza del sistema para liberar espacio y preservar la privacidad
+      contrast # Herramienta para verificar el contraste de colores para la accesibilidad web
+      wordbook # Aplicación para aprender y gestionar vocabulario
+      dialect # Aplicación simple de traducción de idiomas
+      pika-backup # Herramienta de copia de seguridad simple basada en BorgBackup
+      qbittorrent # Cliente BitTorrent moderno y liviano
+      nicotine-plus # Cliente para la red de intercambio de archivos Soulseek (SLSK)
+      p7zip # Utilidad para comprimir y descomprimir archivos en formato 7z
+      peazip
+      zstd #compressor
+      warehouse
+      qutebrowser
+      protonup-qt
+      recorder
+      pawncc
+      video-trimmer
+      keepassxc
+      appflowy
+      flameshot
+      gnome-logs
+      gnome-clocks
+      gnome-font-viewer
+      gnome-decoder
+      gnome-solanum # Aplicación de temporizador Pomodoro para gestionar el tiempo
+      proton-vpn
+      pandoc
+      texliveFull
+      gedit
+    ];
+  };
 }

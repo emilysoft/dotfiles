@@ -5,6 +5,7 @@
 }: let
   workingDirectory = "/var/lib/discord-bots/vscbot";
 in {
+  sops.secrets."discord_bots/vscbot/environmentFile" = {};
   systemd.services.vscbot = {
     enable = true;
     description = "Discord Bot: VSCBot";
