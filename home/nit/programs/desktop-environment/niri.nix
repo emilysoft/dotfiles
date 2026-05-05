@@ -72,15 +72,14 @@ in {
       };
 
       spawn-at-startup = [
-        #{ command = [ "${pkgs.qbittorrent}/bin/qbittorrent" ]; }
-        #{command = ["${pkgs.easyeffects}/bin/easyeffects"];}
+        {command = ["${pkgs.smile}/bin/smile --start-hidden"];}
       ];
 
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
       animations = {
-        slowdown = 0.3;
+        slowdown = 0.0;
       };
 
       window-rules = [
@@ -111,12 +110,19 @@ in {
         }
         {
           matches = [
+            {app-id = "smile$";}
+          ];
+          open-floating = true;
+          default-column-width = {fixed = 316;};
+          default-window-height = {fixed = 410;};
+        }
+        {
+          open-floating = true;
+          matches = [
             {
-              app-id = "zen-beta$";
               title = "^Picture-in-Picture$";
             }
           ];
-          open-floating = true;
         }
         {
           geometry-corner-radius = {
@@ -153,28 +159,15 @@ in {
         "Mod+Shift+Y".action.spawn-sh = ["xdg-open https://www.youtube.com/playlist?list=LL"];
 
         "Mod+S".action.spawn-sh = ["fuzzel"];
-        "Mod+Shift+S".action.spawn-sh = [
-          "printf 'sticky-notes \
-          speedcrunch \
-          onlyoffice-desktopeditors \
-          anki \
-          lorien \
-          readest \
-          obsidian' | fuzzel --dmenu |  bash -c"
-        ];
+        "Mod+Shift+S".action.spawn-sh = ["smile"];
+
         "Mod+E".action.spawn-sh = ["thunar"];
         "Mod+Shift+E".action.spawn-sh = ["zen-beta"];
         "Mod+X".action.spawn-sh = ["alacritty"];
         "Mod+Shift+X".action.spawn-sh = ["alacritty -e zellij"];
         "Mod+T".action.spawn-sh = ["cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"];
-        #FIXME remove the hardcode
         "Mod+KP_Up".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0 && pw-play ${volume_control}"];
         "Mod+KP_Down".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pw-play ${volume_control}"];
-
-        "Mod+Shift+KP_End".action.spawn-sh = ["mpv '${config.xdg.configHome}/Downloads/5. Audio/fah.ogg'"];
-        "Mod+Shift+KP_Down".action.spawn-sh = ["mpv '${config.xdg.configHome}/Downloads/5. Audio/stfu.mp3'"];
-        "Mod+Shift+KP_Next".action.spawn-sh = ["mpv '${config.xdg.configHome}/Downloads/5. Audio/efn.ogg'"];
-        "Mod+Shift+KP_Left".action.spawn-sh = ["mpv '${config.xdg.configHome}/Downloads/5. Audio/toma mamaguevo.mp3'"];
 
         # Navegación y Layout
 
@@ -196,7 +189,7 @@ in {
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
 
-        "Mod+Shift+F".action.toggle-window-floating = {};
+        "Mod+V".action.toggle-window-floating = [];
         "Mod+W".action.toggle-column-tabbed-display = {};
         "Mod+Shift+H".action.move-column-left = {};
         "Mod+Shift+L".action.move-column-right = {};
@@ -209,7 +202,7 @@ in {
         "Mod+Shift+R".action.switch-preset-window-height = {};
         "Mod+Ctrl+R".action.reset-window-height = {};
         "Mod+F".action.maximize-column = {};
-        "Mod+M".action.fullscreen-window = {};
+        "Mod+Shift+F".action.fullscreen-window = {};
 
         # gammastep
         "Mod+Shift+1".action.spawn-sh = ["${pkgs.systemd}/bin/systemctl --user start gammastep"];

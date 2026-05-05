@@ -24,7 +24,7 @@
   };
 
   systemd.user.timers.sorter = {
-    Unit.Description = "sort download files";
+    #Unit.Description = "sort download files";
     Timer = {
       OnCalendar = "*:0/5";
       Persistent = true;

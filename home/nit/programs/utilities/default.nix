@@ -38,6 +38,8 @@ in {
       pandoc
       texliveFull
       gedit
+      smile
+      trilium-desktop
     ];
   };
 }

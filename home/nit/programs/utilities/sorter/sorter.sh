@@ -209,5 +209,3 @@ done
 # 5. LIMPIEZA Y FINALIZACIÓN
 find . -depth -type d -empty -delete
 find . -depth -type d -empty -delete
-
-echo "✅ ¡Archivos organizados con éxito! Se evitaron todas las sobreescrituras y se respetó la antigüedad de 15 minutos."
