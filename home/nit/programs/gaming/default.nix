@@ -10,7 +10,6 @@ in {
     ./mangohud.nix
   ];
 
-  #programs.lutris.enable = true;
   config = lib.mkIf enabled {
     home.packages = with pkgs; [
       heroic

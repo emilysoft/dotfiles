@@ -13,7 +13,7 @@ in {
       nodejs_latest
       typescript
       python315
-      bruno # probar APIs
+      bruno
       sqlitebrowser
     ];
   };

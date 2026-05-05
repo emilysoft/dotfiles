@@ -15,15 +15,15 @@ in {
     services.easyeffects.enable = true;
 
     home.packages = with pkgs; [
-      kdePackages.elisa # The Elisa music player is developed by the KDE community and strives to be simple and pleasant to use.
+      kdePackages.elisa
       mixxx
-      lmms # Estación de trabajo de audio digital (DAW) de código abierto
+      lmms
       gimp
       audacity
-      pinta # Programa simple para dibujar/editar imágenes, similar a Paint.NET
-      gcolor3 # Selector y capturador de color simple para el escritorio
-      kdePackages.kdenlive # Editor de video no lineal avanzado
-      losslesscut-bin # Editor de video simple para cortes rápidos sin pérdida de calidad
+      pinta
+      gcolor3
+      kdePackages.kdenlive
+      losslesscut-bin
       handbrake
       amberol
       pipeline
