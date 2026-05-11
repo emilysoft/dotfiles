@@ -6,6 +6,7 @@
   ...
 }: let
   volume_control = "${pkgs.assets}/share/assets/sounds/volume_control.mp3";
+  new_task = pkgs.writeShellScriptBin "custom-action" (builtins.readFile ./new_task.sh);
 in {
   programs.niri = {
     enable = true;
@@ -147,7 +148,9 @@ in {
       binds = {
         # Aplicaciones y Comandos
         "Mod+I".action.spawn-sh = ["${pkgs.swaylock}/bin/swaylock --daemonize"];
-        #Mod+O {spawn-sh "rofi -modi 'emoji:rofimoji' -show emoji"; }
+        "Mod+O".action.spawn = [
+          "${pkgs.lib.getExe new_task}"
+        ];
         "Mod+Shift+P".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://thepiratebay.org/search.php?q={}&video=on'"];
         "Mod+1".action.spawn-sh = ["niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id) &"];
         "Mod+2".action.spawn-sh = ["niri msg action set-dynamic-cast-window"];

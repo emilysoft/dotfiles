@@ -17,7 +17,7 @@ in {
       cava
       ncdu
       bottom
-      unrar-wrapper
+      unrar
       tree
       jq
       wget

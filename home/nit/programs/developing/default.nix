@@ -10,6 +10,7 @@ in {
     home.packages = with pkgs; [
       yarn
       pnpm
+      bun
       nodejs_latest
       typescript
       python315
