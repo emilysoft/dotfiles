@@ -138,27 +138,6 @@
         "type": "github"
       }
     },
-    "elyprismlauncher": {
-      "inputs": {
-        "libnbtplusplus": "libnbtplusplus",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1778725213,
-        "narHash": "sha256-zbxid9wTltpaOU14pwQWTvHry+XTNju9Kgba1O0QuYY=",
-        "owner": "ElyPrismLauncher",
-        "repo": "ElyPrismLauncher",
-        "rev": "410a14eeb8cf313b70bbd7534a4ce16367c87523",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ElyPrismLauncher",
-        "repo": "ElyPrismLauncher",
-        "type": "github"
-      }
-    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -351,22 +330,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "libnbtplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1772016279,
-        "narHash": "sha256-7itkptyjoRcXfGLwg1/jxajetZ3a4mDc66+w4X6yW8s=",
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
-        "rev": "687e43031df0dc641984b4256bcca50d5b3f7de3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
         "type": "github"
       }
     },
@@ -594,38 +557,14 @@
         "type": "github"
       }
     },
-    "oxicord": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay_2",
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1778884938,
-        "narHash": "sha256-gRWQ7M7FKHtHWX4SrvCcUbRoNU0EtXn5J+TI+yqFKGc=",
-        "owner": "linuxmobile",
-        "repo": "oxicord",
-        "rev": "7093d32717e7c1dbbfce29cf2821aff31b4da4af",
-        "type": "github"
-      },
-      "original": {
-        "owner": "linuxmobile",
-        "repo": "oxicord",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "concord": "concord",
-        "elyprismlauncher": "elyprismlauncher",
         "home-manager": "home-manager",
         "niri": "niri",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
-        "oxicord": "oxicord",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
@@ -646,27 +585,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "bc83d66023d19fb301ee98772643b24b6129ef48",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rust-overlay_2": {
-      "inputs": {
-        "nixpkgs": [
-          "oxicord",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768186348,
-        "narHash": "sha256-nkpIe3zkpeoFuOl8xBpexulECsHLQ9Ljg1gW3bPCjSI=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "af69e497567a5945a64057717bc9b17c8478097e",
         "type": "github"
       },
       "original": {
@@ -700,7 +618,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1779000518,
@@ -729,7 +647,7 @@
           "nixpkgs"
         ],
         "nur": "nur",
-        "systems": "systems_4",
+        "systems": "systems_3",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
         "tinted-tmux": "tinted-tmux",
@@ -795,21 +713,6 @@
       }
     },
     "systems_4": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_5": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -890,7 +793,7 @@
     },
     "utils": {
       "inputs": {
-        "systems": "systems_5"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1731533236,

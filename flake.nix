@@ -39,16 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    elyprismlauncher = {
-      url = "github:ElyPrismLauncher/ElyPrismLauncher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    oxicord = {
-      url = "github:linuxmobile/oxicord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     vscbot = {
       url = "github:emilysoft/vscbot";
       inputs.nixpkgs.follows = "nixpkgs";

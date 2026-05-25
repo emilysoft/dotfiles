@@ -28,8 +28,6 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default
-      inputs.oxicord.packages.${system}.default
-      inputs.elyprismlauncher.packages.${system}.default
       inputs.concord.packages.${system}.default
     ];
   };
