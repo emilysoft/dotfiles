@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./ssh.nix
     ./neetoons-bot.nix
     ./vscbot.nix
     ./xwayland-satellite.nix
@@ -28,14 +29,6 @@
             name = "PipeWire Output";
           }
         ];
-      };
-    };
-
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        PermitRootLogin = "no";
       };
     };
   };

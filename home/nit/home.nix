@@ -12,6 +12,7 @@
     inputs.nixcord.homeModules.nixcord
     ./programs
     ./mimeapps.nix
+    ./git.nix
     ./services/services.nix
   ];
 
@@ -22,16 +23,6 @@
     username = "nit";
     homeDirectory = "/home/nit";
     stateVersion = "25.11";
-  };
-
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = "neetoons";
-        email = "neet.toons@gmail.com";
-      };
-    };
   };
 
   programs.home-manager.enable = true;
@@ -48,5 +39,11 @@
       pkgs.gst_all_1.gst-plugins-ugly
       pkgs.gst_all_1.gst-libav
     ];
+  };
+
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/nit/.config/sops/age/keys.txt";
   };
 }
