@@ -7,6 +7,7 @@
     ./vaultwarden.nix
     ./discord_bots_backup.nix
     ./firefly-iii.nix
+    ./jellyfin.nix
   ];
 
   services = {
