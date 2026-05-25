@@ -12,6 +12,9 @@ in {
     enable = true;
     package = pkgs.niri;
     settings = {
+      includes = lib.mkAfter [
+        (./niri/blur.kdl)
+      ];
       input = {
         keyboard = {
           xkb = {
@@ -22,7 +25,7 @@ in {
         };
       };
 
-      gestures.hot-corners.enable = false;
+      #hot-corners.enable = false;
 
       cursor = {
         hide-when-typing = true;
@@ -74,6 +77,7 @@ in {
 
       spawn-at-startup = [
         {command = ["${pkgs.smile}/bin/smile --start-hidden"];}
+        {command = ["${pkgs.fcitx5}/bin/fcitx5 -d --replace"];}
       ];
 
       prefer-no-csd = true;
@@ -158,7 +162,7 @@ in {
         "Mod+Y".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://www.youtube.com/results?search_query={}"];
         "Mod+B".action.spawn-sh = ["xdg-open https://www.youtube.com/feed/history"];
         "Mod+D".action.spawn-sh = ["xdg-open ${config.xdg.configHome}/Downloads"];
-
+        "Mod+M".action.spawn-sh = ["${pkgs.wtype}/bin/wtype '/warn usuario: razon:'"];
         "Mod+Shift+Y".action.spawn-sh = ["xdg-open https://www.youtube.com/playlist?list=LL"];
 
         "Mod+S".action.spawn-sh = ["fuzzel"];

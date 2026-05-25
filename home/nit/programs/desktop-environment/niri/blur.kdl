@@ -1,0 +1,18 @@
+window-rule {
+    opacity 0.9
+    match app-id="^Alacritty$"
+    match app-id="zen-beta"
+    match app-id="ghostty"
+    match app-id="^vesktop$"
+    match app-id="^thunar$"
+    match app-id="^discord$"
+    match app-id="^vesktop$"
+    match app-id="^obsdian$"
+    match app-id="^spotify$"
+    match app-id="^ferdium$"
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
