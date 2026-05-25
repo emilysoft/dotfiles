@@ -48,6 +48,11 @@
       url = "github:linuxmobile/oxicord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vscbot = {
+      url = "github:emilysoft/vscbot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     nixpkgs,

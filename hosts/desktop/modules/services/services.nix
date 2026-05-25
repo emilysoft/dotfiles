@@ -1,8 +1,10 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./ssh.nix
-    ./neetoons-bot.nix
-    ./vscbot.nix
     ./xwayland-satellite.nix
     ./vaultwarden.nix
     ./discord_bots_backup.nix
@@ -10,6 +12,7 @@
     ./jellyfin.nix
   ];
 
+  sops.secrets."discord_bots/vscbot/environmentFile" = {};
   services = {
     gnome.gcr-ssh-agent.enable = false;
     flatpak.enable = true;
@@ -31,6 +34,11 @@
           }
         ];
       };
+    };
+
+    vscbot = {
+      enable = true;
+      tokenFile = config.sops.secrets."discord_bots/vscbot/environmentFile".path;
     };
   };
 }

@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    inputs.vscbot.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ./sops.nix
