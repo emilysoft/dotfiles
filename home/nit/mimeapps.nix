@@ -16,7 +16,7 @@ in {
       # --- Desarrollo y Texto ---
       "text/plain" = ["gedit.desktop"];
       "text/md" = ["gedit.desktop"];
-      "application/json" = ["nvim.desktop"];
+      "application/json" = ["gedit.desktop"];
       "text/x-csrc" = ["nvim.desktop"];
       "application/x-wine-extension-ini" = ["gedit.desktop"];
       "application/x-wine-extension-pwn" = ["nvim.desktop"];

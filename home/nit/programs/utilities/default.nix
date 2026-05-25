@@ -21,24 +21,22 @@ in {
       peazip
       zstd
       warehouse
-      qutebrowser
       protonup-qt
       recorder
       pawncc
       video-trimmer
-      appflowy
-      flameshot
       gnome-logs
       gnome-clocks
       gnome-font-viewer
-      gnome-decoder
       gnome-solanum
+      gnome-calendar
       proton-vpn
       pandoc
       texliveFull
       gedit
       smile
-      trilium-desktop
+      wtype
+      cloc
     ];
   };
 }

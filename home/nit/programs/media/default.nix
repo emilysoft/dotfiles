@@ -28,7 +28,7 @@ in {
       amberol
       pipeline
       openscreen
-      nuclear
+      reaper
     ];
   };
 }
