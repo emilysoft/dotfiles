@@ -99,8 +99,7 @@
 
 (defwidget bots []
     (box :class "bots" :spacing 20
-        vscbot
-        neetoons))
+        vscbot))
 
 (defwidget music []
   (box :class "music"
@@ -114,9 +113,6 @@
   )
 (defpoll vscbot :interval "10s"
   "scripts/vscbot")
-
-(defpoll neetoons :interval "10s"
-  "scripts/neetoons")
 
 (defpoll storage :interval "5s"
   `df -h --output=avail / | head -n 2 | tail -n 1 | cut -c -4 | awk '{print "󰋊 " $1 "Gb"}'`)

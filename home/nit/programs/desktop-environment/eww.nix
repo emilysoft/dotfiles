@@ -4,8 +4,11 @@
   lib,
   ...
 }: {
-  programs.eww.enable = true;
-  programs.eww.configDir = ./eww;
+  programs.eww = {
+    enable = true;
+    yuckConfig = builtins.readFile ./eww/eww.yuck;
+    scssConfig = builtins.readFile ./eww/eww.scss;
+  };
 
   systemd.user.services.eww = {
     Unit = {
