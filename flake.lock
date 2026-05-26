@@ -817,11 +817,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1779675205,
-        "narHash": "sha256-iLSNajPFVUbwEjSVdegrrwNn9TZmrgXDKlctxx8L/sY=",
+        "lastModified": 1779760943,
+        "narHash": "sha256-CuNWx3KsKWQ+NdX6MMUOoQtPrqnX8lYojsJRzR9ZKKk=",
         "owner": "emilysoft",
         "repo": "vscbot",
-        "rev": "238323ea26002485b34eea4e7b75848841262721",
+        "rev": "6689e00970ca962743cca27814473c2fe2a0eff4",
         "type": "github"
       },
       "original": {

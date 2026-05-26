@@ -38,6 +38,7 @@
 
     vscbot = {
       enable = true;
+      port = 3006;
       tokenFile = config.sops.secrets."discord_bots/vscbot/environmentFile".path;
     };
   };
