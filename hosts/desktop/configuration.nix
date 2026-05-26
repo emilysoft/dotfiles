@@ -28,12 +28,6 @@
     shell = pkgs.fish;
   };
 
-  users.users.discord-bot = {
-    isSystemUser = true;
-    group = "users";
-    home = "/var/lib/discord-bots";
-  };
-
   programs = {
     fish.enable = true;
     gamemode.enable = true;
