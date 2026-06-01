@@ -16,7 +16,7 @@ trap 'error_handler $LINENO' ERR
 
 backup_bot() {
     local BOT_NAME=$1
-    local DB_PATH="/var/lib/discord-bots/${BOT_NAME}-db/${BOT_NAME}.db"
+    local DB_PATH="/var/lib/${BOT_NAME}/${BOT_NAME}.db"
     local DATE=$(date +%Y-%m-%d_%H%M)
     local FILENAME="${BOT_NAME}_${DATE}.tar.gz"
     local BACKUP_TEMP="/tmp/${BOT_NAME}_${DATE}.db"
