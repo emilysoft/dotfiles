@@ -20,14 +20,15 @@ in {
         ];
         frameless = true;
 
-        plugins = {
-          messageLogger.enable = true;
-          typingIndicator.enable = true;
-          silentTyping.enable = true;
-          serverInfo.enable = true;
-          fakeNitro.enable = true;
-          noBlockedMessages.enable = true;
-        };
+        plugins = lib.genAttrs [
+          "messageLogger"
+          "typingIndicator"
+          "silentTyping"
+          "serverInfo"
+          "fakeNitro"
+          "noBlockedMessages"
+          "voiceMessages"
+        ] (name: {enable = true;});
       };
     };
   };
