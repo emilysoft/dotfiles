@@ -10,8 +10,9 @@ in {
     home.packages = with pkgs; [
       obsidian
       sticky-notes
-      speedcrunch
       onlyoffice-desktopeditors
+      anki-bin
+      gedit
       readest
     ];
   };

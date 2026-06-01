@@ -9,7 +9,6 @@ in {
   config = lib.mkIf enabled {
     home.packages = with pkgs; [
       waypaper
-      anki-bin
       bleachbit
       contrast
       wordbook
@@ -24,7 +23,6 @@ in {
       protonup-qt
       recorder
       pawncc
-      video-trimmer
       gnome-logs
       gnome-clocks
       gnome-font-viewer
@@ -33,7 +31,6 @@ in {
       proton-vpn
       pandoc
       texliveFull
-      gedit
       smile
       wtype
       cloc
