@@ -4,16 +4,13 @@
   lib,
   ...
 }: let
-  enabled = config.mis-modulos.profile-principal.enable;
+  enabled = config.mis-modulos.media.enable;
 in {
   imports = [
     ./spicetify.nix
     ./mpv.nix
   ];
   config = lib.mkIf enabled {
-    programs.obs-studio.enable = true;
-    services.easyeffects.enable = true;
-
     home.packages = with pkgs; [
       kdePackages.elisa
       mixxx
@@ -23,7 +20,7 @@ in {
       pinta
       gcolor3
       kdePackages.kdenlive
-      losslesscut-bin
+      video-trimmer
       handbrake
       amberol
       pipeline

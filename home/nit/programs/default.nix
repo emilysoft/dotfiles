@@ -9,8 +9,9 @@ with lib; let
   system = pkgs.stdenv.hostPlatform.system;
   cfg = config.mis-modulos.profile-principal;
 in {
-  options.mis-modulos.profile-principal = {
-    enable = mkEnableOption "My applications profile";
+  options.mis-modulos = {
+    media = {enable = mkEnableOption "Media applications";};
+    profile-principal = {enable = mkEnableOption "My applications profile";};
   };
 
   imports = [

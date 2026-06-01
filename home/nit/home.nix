@@ -17,7 +17,10 @@
   ];
 
   #programs
-  mis-modulos.profile-principal.enable = true;
+  mis-modulos = {
+    profile-principal.enable = true;
+    media.enable = false;
+  };
 
   home = {
     username = "nit";
@@ -27,6 +30,9 @@
 
   programs.home-manager.enable = true;
   programs.opencode.enable = true;
+
+  services.easyeffects.enable = true;
+  programs.obs-studio.enable = true;
 
   home.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
