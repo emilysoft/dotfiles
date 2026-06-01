@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./niri.nix
+    ./niri/niri.nix
     ./eww.nix
     ./swaylock.nix
     ./swayidle.nix
