@@ -12,8 +12,18 @@
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    config = {
+      common = {
+        default = ["gtk" "gnome"];
+      };
+      niri = {
+        "org.freedesktop.impl.portal.FileChooser" = ["thunar"];
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -25,7 +35,6 @@
     gst_all_1.gst-libav
 
     # --- Entorno de Escritorio y Complementos (Wayland/Sway) ---
-    xdg-desktop-portal # Implementa las API de Freedesktop para aplicaciones aisladas (necesario en Wayland)
     fuzzel #FIXME por modular
     swaynotificationcenter
     swayimg #FIXME por modular # Visor de imágenes
@@ -67,7 +76,6 @@
     VISUAL = "nvim";
   };
 
-  # Necesario para que las apps encuentren el servicio en Wayland/Hyprland
   services.dbus.enable = true;
   programs.xwayland.enable = true;
 }
