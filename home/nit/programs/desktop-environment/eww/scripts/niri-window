@@ -1,0 +1,35 @@
+#!/run/current-system/sw/bin/bash
+case "${1:-once}" in
+    once|--once|-1|"")
+        app_id=$(niri msg --json focused-window 2>/dev/null | jq -r '.app_id // empty')
+        [ -n "$app_id" ] && echo "${app_id^}"
+        ;;
+    watch|--watch|-w)
+        last_id=""
+        while true; do
+            data=$(niri msg --json focused-window 2>/dev/null) || {
+                sleep 1
+                continue
+            }
+            cur_id=$(echo "$data" | jq '.id // empty')
+            if [ -z "$cur_id" ]; then
+                [ -n "$last_id" ] && echo ""
+                last_id=""
+                sleep 0.3
+                continue
+            fi
+            if [ "$cur_id" != "$last_id" ]; then
+                app_id=$(echo "$data" | jq -r '.app_id // empty')
+                if [ -n "$app_id" ]; then
+                    echo "${app_id^}"
+                    last_id="$cur_id"
+                fi
+            fi
+            sleep 0.3
+        done
+        ;;
+    *)
+        echo "Uso: $0 [once|watch]"
+        exit 1
+        ;;
+esac
