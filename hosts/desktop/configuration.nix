@@ -9,15 +9,8 @@
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ./sops.nix
-    ./modules/greetd.nix
-    ./modules/wayland.nix
-    ./modules/audio.nix
-    ./modules/disk.nix
-    ./modules/fonts.nix
-    ./modules/file-manager.nix
-    ./modules/networking.nix
-    ./modules/virtualisation.nix
-    ./modules/services/services.nix
+    ./modules
+    ./services
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

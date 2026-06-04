@@ -18,11 +18,6 @@
     flatpak.enable = true;
     journald.extraConfig = "SystemMaxUse=500M";
 
-    mysql = {
-      enable = true;
-      package = pkgs.mariadb;
-    };
-
     mpd = {
       enable = true;
       settings = {
