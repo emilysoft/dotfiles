@@ -48,6 +48,10 @@
       url = "github:chojs23/concord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ferdium = {
+      url = "github:emilysoft/ferdium-app-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     nixpkgs,
@@ -58,6 +62,7 @@
     shared-overlays = [
       inputs.niri.overlays.niri
       inputs.nix-cachyos-kernel.overlays.pinned
+      inputs.ferdium.overlays.default
       (import ./home/nit/programs/overlays.nix)
     ];
   in {
