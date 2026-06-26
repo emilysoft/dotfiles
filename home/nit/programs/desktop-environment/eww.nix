@@ -28,4 +28,9 @@
     source = ./eww/scripts/network;
     executable = true;
   };
+
+  home.file.".config/eww/scripts/niri-window" = {
+    source = ./eww/scripts/niri-window;
+    executable = true;
+  };
 }
