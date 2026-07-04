@@ -7,10 +7,10 @@ stdenv.mkDerivation rec {
   version = "1.0";
 
   src = fetchFromGitHub {
-    owner = "neetoons";
-    repo = "dotfiles";
-    rev = "assets";
-    sha256 = "sha256-otwBiOS4scfq++Qwno5ww/Q7ObdE+XurYJIUmsQd0xk=";
+    owner = "emilysoft";
+    repo = "assets";
+    rev = "main";
+    sha256 = "sha256-ubcfQgJbMIuZG2j38LvZc4lMMx3p2umgdGsJfaAhCkc=";
   };
 
   installPhase = ''
