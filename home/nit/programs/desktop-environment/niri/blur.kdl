@@ -7,9 +7,19 @@ window-rule {
     match app-id="^thunar$"
     match app-id="^discord$"
     match app-id="^vesktop$"
-    match app-id="^obsdian$"
+    match app-id="^obsidian$"
     match app-id="^spotify$"
-    match app-id="^ferdium$"
+    match app-id="^readest$"
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+window-rule {
+    opacity 0.8
+      match app-id="^ferdium$"
 
     background-effect {
         blur true
