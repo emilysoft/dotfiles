@@ -5,5 +5,6 @@
     lua-language-server
     alejandra
     gcc
+    gopls
   ];
 }

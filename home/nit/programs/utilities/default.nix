@@ -8,7 +8,6 @@
 in {
   config = lib.mkIf enabled {
     home.packages = with pkgs; [
-      waypaper
       bleachbit
       contrast
       wordbook
@@ -17,21 +16,12 @@ in {
       qbittorrent
       nicotine-plus
       p7zip
-      peazip
-      zstd
       warehouse
-      protonup-qt
-      recorder
       pawncc
       gnome-logs
-      gnome-clocks
-      gnome-font-viewer
       gnome-solanum
-      gnome-calendar
-      proton-vpn
       pandoc
       texliveFull
-      smile
       wtype
       cloc
     ];

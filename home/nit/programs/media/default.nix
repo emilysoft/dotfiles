@@ -12,7 +12,6 @@ in {
   ];
   config = lib.mkIf enabled {
     home.packages = with pkgs; [
-      kdePackages.elisa
       mixxx
       lmms
       gimp
@@ -22,7 +21,6 @@ in {
       kdePackages.kdenlive
       video-trimmer
       handbrake
-      amberol
       pipeline
       openscreen
       reaper

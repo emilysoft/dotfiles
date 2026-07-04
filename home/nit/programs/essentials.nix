@@ -11,5 +11,11 @@
     gnupg
     zellij
     rclone # Herramienta de sincronización de archivos con servicios de almacenamiento en la nube
+    smile
+    tauon
+    losslesscut-bin
+    proton-vpn
+    waypaper
+    recorder
   ];
 }
