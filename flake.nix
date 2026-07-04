@@ -2,7 +2,11 @@
   description = "Nit's NixOS configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel/release";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -48,10 +52,13 @@
       url = "github:chojs23/concord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     ferdium = {
       url = "github:emilysoft/ferdium-app-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lutris-nixpkgs.url = "github:NixOS/nixpkgs/3cac626ec5e3703e835f227687e88aa9e2f25701";
   };
   outputs = {
     nixpkgs,
@@ -63,7 +70,7 @@
       inputs.niri.overlays.niri
       inputs.nix-cachyos-kernel.overlays.pinned
       inputs.ferdium.overlays.default
-      (import ./home/nit/programs/overlays.nix)
+      (import ./home/nit/programs/overlays.nix {inherit inputs;})
     ];
   in {
     nixosConfigurations = {

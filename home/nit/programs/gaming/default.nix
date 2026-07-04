@@ -14,6 +14,8 @@ in {
     home.packages = with pkgs; [
       heroic
       steam
+      lutris
+      osu-lazer-bin
     ];
   };
 }
