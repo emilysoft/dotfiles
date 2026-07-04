@@ -8,6 +8,7 @@
 in {
   imports = [
     ./vesktop.nix
+    ./newsboat.nix
   ];
 
   config = lib.mkIf enabled {
@@ -15,7 +16,6 @@ in {
       ferdium
       telegram-desktop
       newsflash
-      newsboat
     ];
   };
 }
