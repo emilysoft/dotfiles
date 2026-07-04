@@ -35,6 +35,8 @@
       enable = true;
       port = 3006;
       tokenFile = config.sops.secrets."discord_bots/vscbot/environmentFile".path;
+      mainServerId = "813538324320092161";
+      clientId = "883827073049845801";
     };
   };
 }
