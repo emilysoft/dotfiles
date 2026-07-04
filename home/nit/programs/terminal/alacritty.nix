@@ -9,7 +9,7 @@
     package = pkgs.alacritty-graphics;
     settings = lib.mkForce {
       window = {
-        opacity = 0.9;
+        opacity = 0.3;
         blur = true;
       };
 
