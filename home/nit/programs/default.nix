@@ -30,6 +30,7 @@ in {
     home.packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default
       inputs.concord.packages.${system}.default
+      inputs.elyprism.packages.${system}.default
     ];
   };
 }
