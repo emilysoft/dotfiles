@@ -4,7 +4,7 @@
   ...
 }: let
   src = pkgs.fetchFromGitHub {
-    owner = "neetoons";
+    owner = "emilysoft";
     repo = "discord-rpc-manager";
     rev = "main";
     hash = "sha256-Ha73XleAGt0wKAXQ5TVrbAn6ulE4/exxXY20Q6nPIFA=";
