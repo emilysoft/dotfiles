@@ -10,6 +10,7 @@
     ./discord_bots_backup.nix
     ./firefly-iii.nix
     ./jellyfin.nix
+    ./podman.nix
   ];
 
   sops.secrets."discord_bots/vscbot/environmentFile" = {};
