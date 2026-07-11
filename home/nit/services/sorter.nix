@@ -26,7 +26,7 @@
   systemd.user.timers.sorter = {
     #Unit.Description = "sort download files";
     Timer = {
-      OnCalendar = "*:0/5";
+      OnCalendar = "*:0/30";
       Persistent = true;
     };
     Install.WantedBy = ["timers.target"];
