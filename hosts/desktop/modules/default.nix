@@ -6,7 +6,6 @@
     ./fonts.nix
     ./greetd.nix
     ./networking.nix
-    ./virtualisation.nix
     ./wayland.nix
   ];
 }
