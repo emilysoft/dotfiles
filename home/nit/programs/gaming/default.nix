@@ -15,7 +15,6 @@ in {
       heroic
       steam
       lutris
-      osu-lazer-bin
     ];
   };
 }
