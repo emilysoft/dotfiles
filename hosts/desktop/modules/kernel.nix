@@ -30,4 +30,5 @@
       priority = 0;
     }
   ];
+  systemd.services."dev-ttyS0".enable = false;
 }
