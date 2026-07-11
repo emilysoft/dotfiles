@@ -48,6 +48,9 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["root"];
+  nix.extraOptions = ''
+    !include ${config.sops.secrets."github/rate_limit".path}
+  '';
 
   time.timeZone = "America/Caracas";
   i18n.defaultLocale = "en_US.UTF-8";
