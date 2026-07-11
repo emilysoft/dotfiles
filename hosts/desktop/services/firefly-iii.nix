@@ -1,8 +1,13 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   sops.secrets."firefly-iii" = {
     owner = "nit";
     mode = "0600";
   };
+
   services.firefly-iii = {
     enable = true;
     user = "nit";
@@ -10,11 +15,21 @@
     dataDir = "/var/lib/firefly-iii";
     enableNginx = true;
     virtualHost = "firefly.local";
+
+    poolConfig = {
+      "pm" = "static";
+      "pm.max_children" = 2;
+      "pm.max_requests" = 200;
+    };
+
     settings = {
-      APP_ENV = "local";
+      APP_ENV = "production";
       APP_KEY_FILE = config.sops.secrets."firefly-iii".path;
       SITE_OWNER = "mail@example.com";
       DB_CONNECTION = "sqlite";
+
+      APP_DEBUG = false;
+      LOG_CHANNEL = "daily";
     };
   };
 
@@ -30,7 +45,8 @@
     };
   };
 
-  systemd.tmpfiles.rules = [
-    "d /var/lib/firefly-iii 770 nit nginx -"
-  ];
+  systemd.services.firefly-iii-setup = {
+    before = lib.mkForce [];
+    requiredBy = lib.mkForce [];
+  };
 }

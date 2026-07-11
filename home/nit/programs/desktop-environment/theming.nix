@@ -6,7 +6,7 @@
   gtk = {
     enable = true;
     colorScheme = "dark";
-    gtk4.theme = config.gtk.theme;
+    #gtk4.theme = config.gtk.theme;
     iconTheme.package = pkgs.papirus-icon-theme.override {color = "pink";};
     iconTheme.name = "Papirus-Dark";
   };
