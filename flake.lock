@@ -156,6 +156,7 @@
       "original": {
         "owner": "ElyPrismLauncher",
         "repo": "Launcher",
+        "rev": "ec65fea2d4b891056d0dd1ff2d80a88e42f85d5d",
         "type": "github"
       }
     },
@@ -913,17 +914,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1782192558,
-        "narHash": "sha256-YhrqQgyVWLyRCfajmAwvrptVpqApJnNR9fKGRmprDoM=",
-        "owner": "emilysoft",
-        "repo": "vscbot",
-        "rev": "8f557717a868340332bb430c94b8ad304e064fb3",
-        "type": "github"
+        "lastModified": 1783805650,
+        "narHash": "sha256-qe/3b6dNk62MyC0UoHbupTvXv8QXqOSH6jFL/xrNYC4=",
+        "ref": "refs/heads/master",
+        "rev": "97c82f3798102d9ff6c4eb10f5ae7dd6bac4530d",
+        "revCount": 118,
+        "type": "git",
+        "url": "https://codeberg.org/emilysoft/vscbot.git"
       },
       "original": {
-        "owner": "emilysoft",
-        "repo": "vscbot",
-        "type": "github"
+        "type": "git",
+        "url": "https://codeberg.org/emilysoft/vscbot.git"
       }
     },
     "xwayland-satellite-stable": {

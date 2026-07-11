@@ -7,10 +7,7 @@
       url = "github:xddxdd/nix-cachyos-kernel/release";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    elyprism = {
-      url = "github:ElyPrismLauncher/Launcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +44,7 @@
     };
 
     vscbot = {
-      url = "github:emilysoft/vscbot";
+      url = "git+https://codeberg.org/emilysoft/vscbot.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -62,6 +59,11 @@
     };
 
     lutris-nixpkgs.url = "github:NixOS/nixpkgs/3cac626ec5e3703e835f227687e88aa9e2f25701";
+
+    elyprism = {
+      url = "github:ElyPrismLauncher/Launcher/ec65fea2d4b891056d0dd1ff2d80a88e42f85d5d";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     nixpkgs,
