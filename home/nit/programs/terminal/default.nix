@@ -10,7 +10,6 @@ in {
     programs.rmpc.enable = true;
     home.packages = with pkgs; [
       sherlock
-      yazi
       zip
       unzip
       tty-clock

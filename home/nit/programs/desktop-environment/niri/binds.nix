@@ -25,8 +25,8 @@ in {
     "Mod+S".action.spawn-sh = ["fuzzel"];
     "Mod+Shift+S".action.spawn-sh = ["smile"];
 
-    "Mod+E".action.spawn-sh = ["thunar"];
-    "Mod+Shift+E".action.spawn-sh = ["zen-beta"];
+    "Mod+E".action.spawn-sh = ["alacritty -e yazi"];
+    "Mod+Shift+E".action.spawn-sh = ["thunar"];
     "Mod+X".action.spawn-sh = ["alacritty"];
     "Mod+Shift+X".action.spawn-sh = ["alacritty -e zellij"];
     "Mod+T".action.spawn-sh = ["cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"];
@@ -89,7 +89,7 @@ in {
     "Mod+G".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://www.google.com/search?q={}"];
     "Mod+Shift+G".action.spawn-sh = ["xdg-open https://gemini.google.com"];
     "Mod+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://search.nixos.org/packages?query={}"];
-    "Mod+Shift+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://mynixos.com/search?q={}"];
+    "Mod+Shift+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://search.nixos.org/options?query={}"];
 
     # Control de Reproducción
     "Mod+KP_Right".action.spawn-sh = ["playerctl next"];

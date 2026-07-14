@@ -2,6 +2,7 @@
   imports = [
     ./developing/nvim.nix
     ./terminal/alacritty.nix
+    ./terminal/yazi.nix
   ];
 
   home.packages = with pkgs; [
