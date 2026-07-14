@@ -21,7 +21,7 @@
         keyboard = {
           xkb = {
             layout = "us";
-            variant = "intl";
+            variant = "altgr-intl";
           };
           numlock = true;
         };

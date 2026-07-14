@@ -18,6 +18,7 @@
         {app-id = "obsidian";}
         {app-id = "qbittorrent";}
         {app-id = "elisa";}
+        {app-id = "swayimg";}
       ];
       default-column-width = {proportion = 1.0;};
     }
