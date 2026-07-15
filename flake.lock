@@ -914,11 +914,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1783805650,
-        "narHash": "sha256-qe/3b6dNk62MyC0UoHbupTvXv8QXqOSH6jFL/xrNYC4=",
+        "lastModified": 1783814629,
+        "narHash": "sha256-/WOMOJMywLXZUm2BtQM2ELBjkq4dA49cl0wPSyAOw9M=",
         "ref": "refs/heads/master",
-        "rev": "97c82f3798102d9ff6c4eb10f5ae7dd6bac4530d",
-        "revCount": 118,
+        "rev": "5da66d1711d2b6db77d218542f3c4b3882f9d534",
+        "revCount": 119,
         "type": "git",
         "url": "https://codeberg.org/emilysoft/vscbot.git"
       },
