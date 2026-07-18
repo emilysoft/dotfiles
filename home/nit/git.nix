@@ -11,8 +11,12 @@
 in {
   programs.git = {
     enable = true;
-    userName = "ghost";
-    userEmail = "invalid@void.invalid";
+    settings = {
+      user = {
+        name = "ghost";
+        email = "invalid@void.invalid";
+      };
+    };
 
     includes = [
       {
