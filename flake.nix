@@ -58,8 +58,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lutris-nixpkgs.url = "github:NixOS/nixpkgs/3cac626ec5e3703e835f227687e88aa9e2f25701";
-
+    lutris-nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     elyprism = {
       url = "github:ElyPrismLauncher/Launcher/ec65fea2d4b891056d0dd1ff2d80a88e42f85d5d";
       inputs.nixpkgs.follows = "nixpkgs";
