@@ -86,10 +86,10 @@ in {
     "Mod+Ctrl+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -g \"0,0 1440x900\" - | tee ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy"];
 
     # Utilidades Nix/Web
-    "Mod+G".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://www.google.com/search?q={}"];
+    "Mod+G".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://www.google.com/search?q={}'"];
     "Mod+Shift+G".action.spawn-sh = ["xdg-open https://gemini.google.com"];
-    "Mod+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://search.nixos.org/packages?query={}"];
-    "Mod+Shift+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://search.nixos.org/options?query={}"];
+    "Mod+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://search.nixos.org/packages?query={}'"];
+    "Mod+Shift+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://search.nixos.org/options?channel=unstable&query={}&source=home_manager&type=options'"];
 
     # Control de Reproducción
     "Mod+KP_Right".action.spawn-sh = ["playerctl next"];
