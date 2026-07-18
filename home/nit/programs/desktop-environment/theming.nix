@@ -12,6 +12,7 @@
   };
 
   home.pointerCursor = {
+    enable = true;
     package = pkgs.manhattan-cafe;
     name = "ManhattanCafe";
     size = 24;
