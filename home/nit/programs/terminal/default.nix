@@ -32,7 +32,6 @@ in {
       eza
       lazygit
       cmatrix
-      ghostty
     ];
   };
 }
