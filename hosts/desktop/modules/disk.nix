@@ -8,8 +8,6 @@
 
   # Storage optimization
   nix = {
-    optimise.automatic = true;
-    optimise.dates = ["04:00"];
     settings = {
       download-buffer-size = 524288000;
       auto-optimise-store = false;
@@ -18,6 +16,10 @@
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
+    };
+    optimise = {
+      automatic = true;
+      dates = ["Sun 04:00"];
     };
     extraOptions = ''
       min-free = ${toString (100 * 1024 * 1024)}
