@@ -9,8 +9,8 @@ in {
   config = lib.mkIf enabled {
     programs.nixcord = {
       enable = true;
-
       vesktop.enable = true;
+      discord.silenceNoModClientWarning = true;
 
       #quickCss = "/* css goes here */";
       config = {
