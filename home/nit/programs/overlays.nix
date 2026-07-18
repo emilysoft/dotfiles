@@ -1,5 +1,4 @@
 {inputs}: final: prev: {
-  discord-desktop-mobile = final.callPackage ./communication/discord-desktop-mobile.nix {};
   sorter = final.callPackage ./utilities/sorter.nix {};
   recorder = final.callPackage ./media/recorder.nix {};
   pawncc = final.callPackage ./developing/pawncc.nix {};
