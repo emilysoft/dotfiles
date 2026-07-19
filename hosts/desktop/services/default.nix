@@ -15,7 +15,6 @@
   sops.secrets."discord_bots/vscbot/environmentFile" = {};
   services = {
     gnome.gcr-ssh-agent.enable = false;
-    flatpak.enable = true;
     journald.extraConfig = "SystemMaxUse=500M";
 
     vscbot = {
