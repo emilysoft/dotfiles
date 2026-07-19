@@ -25,7 +25,7 @@
           IdentitiesOnly yes
     '';
   };
-  gnupg.agent = {
+  programs.gnupg.agent = {
     enableSSHSupport = false;
   };
 
