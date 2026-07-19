@@ -29,11 +29,8 @@
     gnupg.agent = {
       enable = true;
       pinentryPackage = pkgs.pinentry-gnome3;
-      enableSSHSupport = false;
     };
   };
-
-  networking.firewall.allowedTCPPorts = [22]; # ssh server
 
   # discord bots depedencies
   environment.systemPackages = with pkgs; [

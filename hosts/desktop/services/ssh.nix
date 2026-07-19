@@ -25,4 +25,9 @@
           IdentitiesOnly yes
     '';
   };
+  gnupg.agent = {
+    enableSSHSupport = false;
+  };
+
+  networking.firewall.allowedTCPPorts = [22];
 }
