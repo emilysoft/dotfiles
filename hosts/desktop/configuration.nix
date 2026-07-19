@@ -32,14 +32,6 @@
     };
   };
 
-  # discord bots depedencies
-  environment.systemPackages = with pkgs; [
-    pnpm
-    nodejs_latest
-    typescript
-    gcc
-  ];
-
   documentation.man.cache.enable = false;
   security.rtkit.enable = true;
 
