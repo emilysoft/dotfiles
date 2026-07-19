@@ -5,7 +5,8 @@
 }: {
   sops.secrets."firefly-iii" = {
     owner = "nit";
-    mode = "0600";
+    group = "nginx";
+    mode = "0440";
   };
 
   services.firefly-iii = {
@@ -17,9 +18,9 @@
     virtualHost = "firefly.local";
 
     poolConfig = {
-      "pm" = "static";
+      "pm" = "ondemand"; # Todo junto, sin guiones
       "pm.max_children" = 2;
-      "pm.max_requests" = 200;
+      "pm.process_idle_timeout" = "10s";
     };
 
     settings = {
@@ -38,15 +39,14 @@
     virtualHosts."${config.services.firefly-iii.virtualHost}" = {
       listen = [
         {
-          addr = "0.0.0.0";
+          addr = "127.0.0.1";
           port = 9080;
         }
       ];
     };
   };
 
-  systemd.services.firefly-iii-setup = {
-    before = lib.mkForce [];
-    requiredBy = lib.mkForce [];
+  networking.hosts = {
+    "127.0.0.1" = ["firefly.local"];
   };
 }
