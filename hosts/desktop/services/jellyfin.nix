@@ -1,13 +1,27 @@
 {pkgs, ...}: {
   services.jellyfin = {
     enable = true;
-    dataDir = "/home/nit/jellyfin";
-    user = "nit";
+
+    user = "jellyfin";
+    group = "jellyfin";
+
+    hardwareAcceleration = {
+      enable = true;
+      type = "vaapi";
+      device = "/dev/dri/renderD128";
+    };
+
+    forceEncodingConfig = true;
+    transcoding = {
+      enableHardwareEncoding = true;
+      throttleTranscoding = true;
+
+      hardwareDecodingCodecs = {
+        h264 = true;
+        mpeg2 = true;
+      };
+    };
   };
 
-  environment.systemPackages = [
-    pkgs.jellyfin
-    pkgs.jellyfin-web
-    pkgs.jellyfin-ffmpeg
-  ];
+  users.users.jellyfin.extraGroups = ["users"];
 }
