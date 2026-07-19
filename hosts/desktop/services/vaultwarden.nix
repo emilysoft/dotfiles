@@ -11,7 +11,6 @@ in {
       owner = "nit";
     };
   };
-  networking.firewall.trustedInterfaces = ["tailscale0"];
 
   services.vaultwarden = {
     enable = true;
@@ -25,10 +24,6 @@ in {
       SIGNUPS_ALLOWED = false;
     };
   };
-
-  systemd.tmpfiles.rules = [
-    "d /var/local/vaultwarden/backup 0775 nit vaultwarden -"
-  ];
 
   services.caddy = {
     enable = true;
@@ -51,23 +46,22 @@ in {
   };
 
   # Backup
-  systemd.user.services.vaultwarden-backup = {
-    description = "Backup cifrado y rotativo de Vaultwarden";
-    after = ["network-online.target"];
+  systemd.services.vaultwarden-upload-gdrive = {
+    description = "Cifra y sube el backup local de Vaultwarden a Google Drive";
+    after = ["network-online.target" "backup-vaultwarden.service"];
     wants = ["network-online.target"];
     serviceConfig = {
       Type = "oneshot";
       User = "nit";
+      Group = "vaultwarden";
       EnvironmentFile = config.sops.secrets."vaultwarden-backup-env".path;
     };
     path = with pkgs; [
-      sqlite
       gnupg
       rclone
       coreutils
       gnutar
       gzip
-      findutils
     ];
     script = "${backupScript}/bin/vaultwarden-backup-script";
     startAt = "04:00";
