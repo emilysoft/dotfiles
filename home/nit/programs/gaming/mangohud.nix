@@ -39,11 +39,7 @@ in {
         gpu_power = true;
 
         # Información Miscelánea
-        arch = true;
-        wine = true;
-        resolution = true;
         gamemode = true;
-        vkbasalt = true;
 
         # Colores (Catppuccin Mocha vibes o según tu .conf)
         text_color = "FFFFFF";

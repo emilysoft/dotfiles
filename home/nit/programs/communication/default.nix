@@ -7,7 +7,7 @@
   enabled = config.mis-modulos.profile-principal.enable;
 in {
   imports = [
-    ./vesktop.nix
+    #./vesktop.nix
     ./newsboat.nix
   ];
 
