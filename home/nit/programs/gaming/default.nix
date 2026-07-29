@@ -8,13 +8,16 @@
 in {
   imports = [
     ./mangohud.nix
+    ./retroarch.nix
   ];
 
   config = lib.mkIf enabled {
     home.packages = with pkgs; [
       heroic
       steam
-      lutris
+      ruffle
     ];
+
+    programs.lutris.enable = true;
   };
 }
