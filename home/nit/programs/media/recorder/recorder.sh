@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Script de grabación de pantalla y audio usando wf-recorder, fuzzel, y slurp.
+# Script de grabación de pantalla usando wf-recorder, fuzzel, y slurp.
 # Requisito: Instalar wf-recorder (nix-shell -p wf-recorder)
 
 # --- CONFIGURACIÓN DE RUTAS Y METADATOS ---
@@ -86,12 +86,10 @@ start_recording() {
     LOG_FILE="$METADATA_DIR/recording.log"
 
     # 4. Comando wf-recorder (ejecutado en background)
-    # -a: Graba audio (automáticamente detecta el default de PulseAudio/Pipewire)
     # -c libx264: Codec de video
     # --pixel-format yuv420p: Para compatibilidad con reproductores
     # -f: Archivo de salida
     wf-recorder $WF_ARGS \
-        -a \
         -c libx264 -p preset=veryfast -p crf=23 \
         --pixel-format yuv420p \
         -f "$OUTPUT_PATH" > "$LOG_FILE" 2>&1 &
