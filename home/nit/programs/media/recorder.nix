@@ -9,6 +9,7 @@
   # Definimos una lista de todas las dependencias que el script necesita para EJECUTARSE
   runtimeDeps = [
     pkgs.wf-recorder # Necesario para la funcionalidad del script
+    pkgs.pipewire # pw-metadata para obtener el monitor del sink (audio del sistema)
     pkgs.bash # Necesario para el shebang (aunque sea implícito, es bueno tenerlo)
   ];
 in

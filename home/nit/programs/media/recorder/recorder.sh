@@ -23,6 +23,15 @@ cleanup_metadata() {
     rm -rf "$METADATA_DIR"
 }
 
+# Obtiene el nombre del source "monitor" del sink por defecto (audio del sistema,
+# no del micrófono). Los monitores de PipeWire se llaman "<sink>.monitor".
+get_audio_source() {
+    DEFAULT_SINK=$(pw-metadata -n default 0 2>/dev/null | grep 'default.audio.sink' | sed -n 's/.*"name":"\([^"]*\)".*/\1/p')
+    if [ -n "$DEFAULT_SINK" ]; then
+        echo "$DEFAULT_SINK.monitor"
+    fi
+}
+
 # --- FUNCIONES PRINCIPALES ---
 
 # Función para iniciar la grabación
@@ -58,6 +67,14 @@ start_recording() {
         exit 1
     fi
 
+    # 0.1 Determinar la fuente de audio del sistema (sink monitor, no el micrófono)
+    AUDIO_SOURCE=$(get_audio_source)
+    if [ -z "$AUDIO_SOURCE" ]; then
+        notify-send --app-name="Recording 🔴" "Error" "No se pudo determinar el audio del sistema."
+        echo "Error: No se pudo obtener el monitor del sink por defecto." >&2
+        exit 1
+    fi
+
     # 2. Elegir modo de grabación (fuzzel)
     MODE=$(echo -e "fullscreen\nSelect Area" | fuzzel --dmenu -p "Modo de Grabación:")
 
@@ -88,10 +105,13 @@ start_recording() {
     # 4. Comando wf-recorder (ejecutado en background)
     # -c libx264: Codec de video
     # --pixel-format yuv420p: Para compatibilidad con reproductores
+    # --audio: Graba el audio del sistema (monitor del sink por defecto)
+    # -C aac: Codec de audio compatible con mp4
     # -f: Archivo de salida
     wf-recorder $WF_ARGS \
         -c libx264 -p preset=veryfast -p crf=23 \
         --pixel-format yuv420p \
+        --audio="$AUDIO_SOURCE" -C aac \
         -f "$OUTPUT_PATH" > "$LOG_FILE" 2>&1 &
 
     # Capturar el PID del proceso de fondo
