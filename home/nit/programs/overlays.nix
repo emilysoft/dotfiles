@@ -5,7 +5,7 @@
   assets = final.callPackage ./assets.nix {};
   manhattan-cafe = final.callPackage ./desktop-environment/manhattan-cafe.nix {};
   lutris =
-    (import inputs.lutris-nixpkgs {
+    (import inputs.nixpkgs-stable {
       inherit (prev) system;
       config.allowUnfree = true;
     }).lutris;

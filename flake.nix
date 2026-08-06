@@ -2,6 +2,7 @@
   description = "Nit's NixOS configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
@@ -62,8 +63,6 @@
       url = "github:ElyPrismLauncher/Launcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    lutris-nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
   };
   outputs = {
     nixpkgs,
