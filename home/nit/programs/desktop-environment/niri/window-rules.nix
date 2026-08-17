@@ -70,6 +70,7 @@
           app-id = "steam";
           title = "^notificationtoasts_\\d+_desktop$";
         }
+        {app-id = "wineboot";}
       ];
       open-focused = false;
       default-floating-position = {
