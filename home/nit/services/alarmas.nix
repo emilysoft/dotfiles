@@ -11,7 +11,7 @@ in {
     file = lib.mkOption {
       type = lib.types.str;
       default = "${config.home.homeDirectory}/.config/alarmas/alarmas.csv";
-      description = "Ruta al archivo CSV con las alarmas (formato HH:MM,días,mensaje).";
+      description = "Ruta al archivo CSV con las alarmas (formato HH:MM,días,mensaje,comando).";
     };
   };
 
@@ -19,11 +19,12 @@ in {
     home.activation.crear-csv-alarmas = lib.hm.dag.entryAfter ["writeBoundary"] ''
       mkdir -p "$(dirname "${cfg.file}")"
       if [ ! -f "${cfg.file}" ]; then
-        cat > "${cfg.file}" <<'EOF'
-08:00,1-5,¡Es hora de despertar!
-12:30,*,¡Hora de comer!
-15:00,6,¡Partida!
-EOF
+      cat > "${cfg.file}" <<'EOF'
+      08:00,1-5,¡Es hora de despertar!
+      12:30,*,¡Hora de comer!
+      15:00,6,¡Partida!
+      08:59,1,abre ferdium,ferdium
+      EOF
       fi
     '';
 
@@ -38,6 +39,7 @@ EOF
         Type = "oneshot";
         ExecStart = "${pkgs.writeShellScript "alarmas" ''
           CSV_FILE="${cfg.file}"
+          export PATH="${config.home.homeDirectory}/.nix-profile/bin:/run/current-system/sw/bin:$PATH"
 
           [ -n "$WAYLAND_DISPLAY" ] || [ -n "$DISPLAY" ] || exit 0
           [ -f "$CSV_FILE" ] || exit 0
@@ -101,16 +103,47 @@ EOF
             hora="''${campo_0:-}"
             dias="''${campo_1:-}"
             mensaje="''${campo_2:-}"
+            comando="''${campo_3:-}"
 
-            [ -z "$hora" ] || [ -z "$mensaje" ] && continue
+            [ -z "$hora" ] && continue
             [ -z "$dias" ] && dias="*"
 
+            hora=$(${pkgs.coreutils}/bin/tr -d '[:space:]' <<< "$hora")
+            if [[ "$hora" =~ ^[0-9]+\.0+$ ]]; then
+              hora="''${hora%%.*}:00"
+            elif [[ "$hora" =~ ^[0-9]+$ ]]; then
+              hora="''${hora}:00"
+            fi
+            case "$hora" in
+              ??:*:* ) hora="''${hora%:*}" ;;
+              ?:*:* ) hora="0''${hora%:*}" ;;
+            esac
             case "$hora" in
               ?:*) hora="0$hora" ;;
             esac
 
+            dias=$(${pkgs.coreutils}/bin/tr -d '[:space:]' <<< "$dias")
+            dias="''${dias//.0/}"
+
             if [ "$hora" = "$NOW" ] && match_day "$dias"; then
-              ${pkgs.libnotify}/bin/notify-send "Alarma" "$mensaje" -u critical
+              if [ -n "$mensaje" ]; then
+                ${pkgs.libnotify}/bin/notify-send "Alarma" "$mensaje" -u critical
+              fi
+              if [ -n "$comando" ]; then
+                IFS=' ' read -ra args <<< "$comando"
+                cmd_abs=$(command -v "''${args[0]}" 2>/dev/null || true)
+                if [ -n "$cmd_abs" ]; then
+                  args[0]="$cmd_abs"
+                  ${pkgs.systemd}/bin/systemd-run --user --no-block --collect \
+                    --setenv="PATH=$PATH" --setenv="HOME=$HOME" \
+                    --setenv="WAYLAND_DISPLAY=$WAYLAND_DISPLAY" \
+                    --setenv="DISPLAY=$DISPLAY" \
+                    --setenv="DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS" \
+                    -- "''${args[@]}" >/dev/null 2>&1 || true
+                else
+                  ( ''${comando} >/dev/null 2>&1 & ) || true
+                fi
+              fi
             fi
           done < "$CSV_FILE"
         ''}";
