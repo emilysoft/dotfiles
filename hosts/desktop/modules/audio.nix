@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     alsa-utils
+    pavucontrol
   ];
 
   services.pipewire = {
