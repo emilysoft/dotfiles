@@ -55,11 +55,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    elyprism = {
-      url = "github:ElyPrismLauncher/Launcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     mac-style-plymouth = {
       url = "github:SergioRibera/s4rchiso-plymouth-theme";
       inputs.nixpkgs.follows = "nixpkgs";
