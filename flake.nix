@@ -3,11 +3,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
-
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -77,7 +73,6 @@
     system = "x86_64-linux";
     shared-overlays = [
       inputs.niri.overlays.niri
-      inputs.nix-cachyos-kernel.overlays.pinned
       inputs.ferdium.overlays.default
       inputs.mac-style-plymouth.overlays.default
       (import ./home/nit/programs/overlays.nix {inherit inputs;})
@@ -88,6 +83,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           home-manager.nixosModules.home-manager
+          inputs.chaotic.nixosModules.default
           ./hosts/desktop/configuration.nix
           {
             nixpkgs = {
