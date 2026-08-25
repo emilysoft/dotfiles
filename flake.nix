@@ -46,7 +46,7 @@
     };
 
     concord = {
-      url = "github:chojs23/concord";
+      url = "github:emilysoft/concord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
