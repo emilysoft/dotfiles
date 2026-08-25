@@ -11,6 +11,14 @@
     settings = {
       download-buffer-size = 524288000;
       auto-optimise-store = false;
+
+      # network throttling control
+      http2 = false;
+      http-connections = 2;
+      max-jobs = 1;
+      cores = 0;
+      connect-timeout = 60;
+      stalled-download-timeout = 90;
     };
     gc = {
       automatic = true;
