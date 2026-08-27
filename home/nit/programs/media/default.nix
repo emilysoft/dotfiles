@@ -21,8 +21,6 @@ in {
       kdePackages.kdenlive
       video-trimmer
       handbrake
-      pipeline
-      openscreen
       reaper
     ];
   };

@@ -29,6 +29,7 @@
   environment.systemPackages = with pkgs; [
     # --- Entorno de Escritorio y Complementos (Wayland/Sway) ---
     fuzzel #FIXME por modular
+    hyprpolkitagent # lo que despliega la ventana emergente pidiendo tu contraseña
     swaynotificationcenter
     swayimg #FIXME por modular # Visor de imágenes
     libnotify # Biblioteca para enviar notificaciones de escritorio

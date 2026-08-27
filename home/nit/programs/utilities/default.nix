@@ -24,6 +24,7 @@ in {
       texliveFull
       wtype
       cloc
+      tor-browser
     ];
   };
 }

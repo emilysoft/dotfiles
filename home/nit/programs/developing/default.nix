@@ -16,7 +16,7 @@ in {
       python315
       bruno
       sqlitebrowser
-      go
+      godot
     ];
   };
 }
