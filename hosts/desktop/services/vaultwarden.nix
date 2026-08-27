@@ -38,8 +38,10 @@ in {
     };
   };
 
-  services.tailscale.enable = true;
-  services.tailscale.extraUpFlags = ["--operator=caddy"];
+  services.tailscale.extraUpFlags = [
+    "--operator=caddy"
+    "--accept-dns=true"
+  ];
   systemd.services.caddy.serviceConfig = {
     AmbientCapabilities = ["CAP_NET_BIND_SERVICE"];
     CapabilityBoundingSet = ["CAP_NET_BIND_SERVICE"];

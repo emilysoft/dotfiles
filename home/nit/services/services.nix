@@ -11,4 +11,5 @@
   mis-modulos.alarmas.enable = true;
 
   services.dunst.enable = true;
+  services.hyprpolkitagent.enable = true;
 }

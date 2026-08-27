@@ -1,43 +1,28 @@
 {pkgs, ...}: {
   networking = {
     networkmanager.enable = true;
-    nameservers = ["8.8.8.8" "1.1.1.1"];
     hostName = "nixos";
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
     };
   };
 
-  programs.nm-applet.enable = true;
-  environment.systemPackages = with pkgs; [
-    polkit_gnome
-  ];
+  services = {
+    resolved.enable = true;
+    tailscale.enable = true;
+    cloudflare-warp.enable = true;
+  };
 
-  security.polkit.enable = true;
+  systemd.services.cloudflare-warp = {
+    after = ["tailscaled.service" "resolved.service"];
+    wants = ["tailscaled.service" "resolved.service"];
 
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
     serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
+      ExecStartPost = pkgs.writeShellScript "warp-exclude-tailscale" ''
+        sleep 2
+        ${pkgs.cloudflare-warp}/bin/warp-cli split-tunnel add 100.64.0.0/10 || true
+      '';
     };
   };
-
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (subject.isInGroup("networkmanager") &&
-          action.id.indexOf("org.freedesktop.NetworkManager.") == 0) {
-        return polkit.Result.YES;
-      }
-    });
-  '';
 }

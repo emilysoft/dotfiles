@@ -1,6 +1,7 @@
 {...}: {
   services.openssh = {
     enable = true;
+    ports = [22];
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
@@ -25,9 +26,4 @@
           IdentitiesOnly yes
     '';
   };
-  programs.gnupg.agent = {
-    enableSSHSupport = false;
-  };
-
-  networking.firewall.allowedTCPPorts = [22];
 }

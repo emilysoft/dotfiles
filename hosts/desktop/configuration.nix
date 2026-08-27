@@ -26,20 +26,17 @@
     gamemode.enable = true;
     localsend.enable = true;
     dconf.enable = true;
-    gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
-    };
+    nm-applet.enable = true;
   };
 
   documentation.man.cache.enable = false;
-  security.rtkit.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["root"];
-  nix.extraOptions = ''
-    !include ${config.sops.secrets."github/rate_limit".path}
-  '';
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
 
   time.timeZone = "America/Caracas";
   i18n.defaultLocale = "en_US.UTF-8";
