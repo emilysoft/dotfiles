@@ -9,7 +9,7 @@
     ./vaultwarden.nix
     ./discord_bots_backup.nix
     ./firefly-iii.nix
-    ./jellyfin.nix
+    #./jellyfin.nix
     ./searxng.nix
   ];
 
