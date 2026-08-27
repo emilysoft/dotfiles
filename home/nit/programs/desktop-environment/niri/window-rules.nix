@@ -23,7 +23,10 @@
       default-column-width = {proportion = 1.0;};
     }
     {
-      matches = [{app-id = "samp.exe";}];
+      matches = [
+        {app-id = "vesktop";}
+        {app-id = "proton";}
+      ];
       open-floating = false;
     }
     {
