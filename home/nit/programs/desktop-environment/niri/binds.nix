@@ -16,12 +16,17 @@ in {
     "Mod+1".action.spawn-sh = ["niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id) &"];
     "Mod+2".action.spawn-sh = ["niri msg action set-dynamic-cast-window"];
     "Mod+3".action.spawn-sh = ["niri msg action set-dynamic-cast-monitor"];
-    "Mod+Y".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://www.youtube.com/results?search_query={}"];
-    "Mod+B".action.spawn-sh = ["xdg-open https://www.youtube.com/feed/history"];
     "Mod+D".action.spawn-sh = ["xdg-open ${config.xdg.configHome}/Downloads"];
     "Mod+M".action.spawn-sh = ["${pkgs.wtype}/bin/wtype '/warn usuario: razon:'"];
-    "Mod+Shift+Y".action.spawn-sh = ["xdg-open https://www.youtube.com/playlist?list=LL"];
 
+    # YouTube search
+    "Mod+Y".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://www.youtube.com/results?search_query={}"];
+    # YouTube watch later
+    "Mod+Shift+Y".action.spawn-sh = ["xdg-open https://www.youtube.com/playlist?list=WL"];
+    # YouTube history
+    "Mod+B".action.spawn-sh = ["xdg-open https://www.youtube.com/feed/history"];
+    "Mod+Alt+Space".action.spawn-sh = ["choice=$(printf 'Apagar\\nSuspender\\nReiniciar' | fuzzel --dmenu --prompt='Acción: '); case \"$choice\" in 'Apagar') systemctl poweroff ;; 'Suspender') systemctl suspend ;; 'Reiniciar') systemctl reboot ;; esac"];
+    "Mod+A".action.spawn-sh = ["choice=$(printf 'Conectar\\nDesconectar' | fuzzel --dmenu --prompt='Acción: '); case \"$choice\" in 'Conectar') warp-cli connect ;; 'Desconectar') warp-cli disconnect ;; esac"];
     "Mod+S".action.spawn-sh = ["fuzzel"];
     "Mod+Shift+S".action.spawn-sh = ["smile"];
 
@@ -86,7 +91,8 @@ in {
     "Mod+Ctrl+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -g \"0,0 1440x900\" - | tee ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy"];
 
     # Utilidades Nix/Web
-    "Mod+G".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://www.google.com/search?q={}'"];
+
+    "Mod+G".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'http://localhost:8080/search?q={}&category_general=1&language=auto&time_range=&safesearch=0&theme=simple'"];
     "Mod+Shift+G".action.spawn-sh = ["xdg-open https://gemini.google.com"];
     "Mod+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://search.nixos.org/packages?query={}'"];
     "Mod+Shift+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://search.nixos.org/options?channel=unstable&query={}&source=home_manager&type=options'"];
