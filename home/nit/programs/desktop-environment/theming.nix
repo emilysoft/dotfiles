@@ -22,7 +22,7 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    targets.vesktop.enable = false;
+    targets.nixcord.enable = false;
     polarity = "dark";
     fonts = {
       serif = {
