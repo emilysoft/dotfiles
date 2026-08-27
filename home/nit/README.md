@@ -6,7 +6,8 @@ This directory contains all user configuration managed by Home Manager. Unlike N
 
 | File | Description |
 |---|---|
-| `home.nix` | Main entry point. Configures username, home directory, git configuration, session variables (EDITOR=nvim, TERMINAL=alacritty) and imports all program and service modules. |
+| `home.nix` | Main entry point. Configures username, home directory, state version (25.11), session variables (EDITOR=nvim, TERMINAL=alacritty), enables sops-nix, EasyEffects, OBS Studio and opencode, and imports all program, git and service modules. |
+| `git.nix` | Configures git with conditional identities: emilysoft identity for `~/.dotfiles` and `~/Projects/emilysoft`, neetoons identity for `~/Projects/neetoons`. Also deploys the emilysoft SSH key from sops. |
 | `mimeapps.nix` | Defines default application associations for each file type (web, images, video, audio, text, etc.). |
 
 ## Directories
@@ -14,4 +15,4 @@ This directory contains all user configuration managed by Home Manager. Unlike N
 | Directory | Description |
 |---|---|
 | `programs/` | Contains all program modules organized by category (communication, terminal, development, gaming, media, etc.). |
-| `services/` | Contains user service modules (clipboard, wallpapers, notifications, etc.). |
+| `services/` | Contains user service modules (clipboard, waypaper, alarms, notifications, etc.). |

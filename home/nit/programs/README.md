@@ -6,20 +6,20 @@ This directory contains modules that install and configure programs for the `nit
 
 | File/Directory   | Description                                                                                                                                                                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `default.nix`    | Entry point. Defines the `mis-modulos.profile-principal.enable` option which acts as a master switch to activate the full set of applications. Imports all program categories. |
-| `overlays.nix`   | Defines custom overlays for nixpkgs with packages not available in official repositories or requiring specific customizations.                                                 |
-| `essentials.nix` | Installs essential daily-use tools: btop, sops, age, gnupg, zellij, rclone. Also imports nvim and alacritty configurations.                                                    |
+| `default.nix`    | Entry point. Defines the `mis-modulos.profile-principal.enable` and `mis-modulos.media.enable` options. Imports all program categories and installs the Zen Browser and Concord. |
+| `overlays.nix`   | Defines custom overlays for nixpkgs with packages not available in official repositories or requiring specific customizations (sorter, recorder, assets, manhattan-cafe, lutris). |
+| `essentials.nix` | Installs essential daily-use tools: btop, sops, age, gnupg, zellij, rclone, smile, tauon, losslesscut-bin, proton-vpn, waypaper and recorder. Also imports nvim, alacritty and yazi configurations. |
 | `assets.nix`     | Defines a custom package with desktop visual assets (wallpapers, cursors, sounds) fetched from GitHub.                                                                         |
 
 ## Program Categories
 
 | Category               | Content                                                                                       |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
-| `communication/`       | Messaging and communication apps (Vesktop, Ferdium, Telegram, RSS readers).                   |
-| `desktop-environment/` | Desktop environment components (Niri, Eww, Swaylock, Swayidle, Gammastep, MPVPaper, theming). |
-| `terminal/`            | Terminal tools and emulators (Alacritty, yazi, fzf, btop, and over 27 CLI tools).             |
-| `developing/`          | Development tools (Neovim, Node.js, Python, pawncc, sampctl).                                 |
-| `utilities/`           | Utility and productivity applications (flameshot, qbittorrent, Obsidian, and over 32 apps).   |
-| `gaming/`              | Gaming platforms and tools (Steam, Heroic, MangoHud).                                         |
-| `media/`               | Multimedia applications (OBS, Kdenlive, GIMP, Audacity, MPV, Spicetify).                      |
-| `office/`              | Office applications (Obsidian, OnlyOffice, SpeedCrunch, Readest).                             |
+| `communication/`       | Messaging and communication apps (Vesktop/Nixcord, Ferdium, Telegram, Newsboat).              |
+| `desktop-environment/` | Desktop environment components (Niri, Eww, Swaylock, Swayidle, Gammastep, awww, theming).     |
+| `terminal/`            | Terminal tools and emulators (Alacritty, yazi, rmpc and over 20 CLI tools).                   |
+| `developing/`          | Development tools (Neovim, Node.js, Python, Bun, Godot, sampctl).                             |
+| `utilities/`           | Utility applications (qbittorrent, Tor Browser, bleachbit, contrast).                         |
+| `gaming/`              | Gaming platforms and tools (Steam, Heroic, Lutris, RetroArch, Ruffle, MangoHud).              |
+| `media/`               | Multimedia applications (Kdenlive, GIMP, Audacity, LMMS, Mixxx, MPV, Spicetify).              |
+| `office/`              | Office applications (Obsidian, OnlyOffice, Anki, Gedit, Readest).                             |

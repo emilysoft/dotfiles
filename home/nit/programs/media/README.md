@@ -5,15 +5,15 @@ This module configures all media creation and consumption applications. It cover
 ## Files
 
 ### `default.nix`
-When the profile is enabled, enables **OBS Studio** for recording and streaming, and **EasyEffects** for real-time audio processing. Additionally installs:
+When the media profile is enabled, installs:
 
-- **Music**: Elisa, Nuclear, Amberol (minimalist player)
-- **DJ**: Mixxx
+- **DJ**: Mixxx (DJ controller software)
 - **Music production**: LMMS (digital audio workstation)
 - **Image editing**: GIMP, Pinta, gcolor3 (color picker)
-- **Audio editing**: Audacity
-- **Video editing**: Kdenlive, LosslessCut (cut without re-encoding), HandBrake (conversion)
-- **Capture**: OpenScreen, Pipeline
+- **Audio editing**: Audacity, Reaper (DAW)
+- **Video editing**: Kdenlive, Video Trimmer, HandBrake (conversion)
+
+OBS Studio (recording/streaming) and EasyEffects (real-time audio processing) are enabled at the home level in `home/nit/home.nix` rather than through this module.
 
 This suite covers all media creation and consumption needs, from basic editing to professional production.
 
@@ -30,7 +30,7 @@ Used to improve the Spotify experience by removing ads and adding features that 
 Configures **MPV** as the video player with custom profiles: standard profile with taskbar progress and image viewer mode with ModernZ osc configuration. Includes modernz and thumbfast scripts. MPV is chosen for being the most powerful and configurable video player available on Linux.
 
 ### `recorder.nix`
-Defines a custom package for **recorder**, a bash script that wraps wf-recorder for screen recording. Simplifies the recording process with a single command instead of having to remember complex wf-recorder options.
+Defines a custom package for **recorder**, a bash script that wraps wf-recorder for screen recording. Simplifies the recording process with a single command instead of having to remember complex wf-recorder options. Installed globally through `essentials.nix`.
 
 ## Directories
 

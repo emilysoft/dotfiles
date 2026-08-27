@@ -5,13 +5,10 @@ This module configures the user's messaging and communication applications. The 
 ## Files
 
 ### `default.nix`
-When the main profile is enabled, installs **Ferdium** (messaging service aggregator), **Telegram Desktop**, **Newsflash** (GUI RSS reader) and **Newsboat** (terminal RSS reader). Included to centralize communication and stay informed through RSS feeds.
+When the main profile is enabled, installs **Ferdium** (messaging service aggregator, built from a custom flake) and **Telegram Desktop**. Vesktop and Newsboat are configured by their own modules below. Included to centralize communication and stay informed through RSS feeds.
 
 ### `vesktop.nix`
-Configures **Vesktop** as the Discord client via **nixcord**. Uses the Catppuccin Mocha Pink theme. Enables plugins like messageLogger, typingIndicator, silentTyping, serverInfo, fakeNitro and noBlockedMessages. Vesktop is chosen for being a Linux-optimized Discord client with better performance and compatibility than the official client.
+Configures **Vesktop** as the Discord client via **nixcord**. Uses the Catppuccin Mocha Pink theme with frameless mode. Enables a broad set of plugins: messageLogger, typingIndicator, silentTyping, serverInfo, fakeNitro, voiceMessages, tenorGifSearch, youtubeAdblock, spotifyCrack, shikiCodeblocks, whoReacted, viewIcons and many more. Vesktop is chosen for being a Linux-optimized Discord client with better performance and compatibility than the official client.
 
-### `ferdium.nix`
-Defines a custom package for **Ferdium v7.1.1** built from a .deb. Ferdium allows centralizing multiple messaging services (WhatsApp, Slack, Teams, etc.) into a single window, avoiding multiple apps open and consuming resources.
-
-### `discord-desktop-mobile.nix`
-Custom package for **discord-desktop-mobile** fetched from GitHub. Provides a Discord interface with a mobile app look for a different experience.
+### `newsboat.nix`
+Configures **Newsboat** as the terminal RSS reader with a curated feed list (NixOS, local Venezuelan news, tech and crypto sites) plus a custom keybinding scheme (j/k navigation, l opens, h goes back) and Catppuccin-inspired colors.
