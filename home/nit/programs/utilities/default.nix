@@ -10,20 +10,7 @@ in {
     home.packages = with pkgs; [
       bleachbit
       contrast
-      wordbook
-      dialect
-      pika-backup
       qbittorrent
-      nicotine-plus
-      p7zip
-      warehouse
-      pawncc
-      gnome-logs
-      gnome-solanum
-      pandoc
-      texliveFull
-      wtype
-      cloc
       tor-browser
     ];
   };
