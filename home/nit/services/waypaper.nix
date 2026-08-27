@@ -12,7 +12,7 @@ in {
     Service = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${pkgs.waypaper}/bin/waypaper --restore --folder ${wallpapers} --backend mpvpaper";
+      ExecStart = "${pkgs.waypaper}/bin/waypaper --restore --folder ${wallpapers} --backend awww";
       Restart = "on-failure";
       RestartSec = "5s";
     };

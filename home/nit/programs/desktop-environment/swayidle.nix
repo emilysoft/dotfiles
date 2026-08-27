@@ -5,10 +5,8 @@
   in {
     enable = true;
     events = {
-      before-sleep = "${pkgs.procps}/bin/pkill -STOP mpvpaper; ${pkgs.systemd}/bin/systemctl --user stop gammastep;";
-      unlock = "${pkgs.procps}/bin/pkill -CONT mpvpaper; ${pkgs.systemd}/bin/systemctl --user start gammastep";
-      after-resume = "${pkgs.procps}/bin/pkill -CONT mpvpaper";
-      lock = "${pkgs.procps}/bin/pkill -STOP mpvpaper";
+      before-sleep = "${pkgs.systemd}/bin/systemctl --user stop gammastep;";
+      unlock = "${pkgs.systemd}/bin/systemctl --user start gammastep";
     };
 
     timeouts = [

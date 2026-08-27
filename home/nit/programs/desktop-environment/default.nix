@@ -5,7 +5,6 @@
     ./swaylock.nix
     ./swayidle.nix
     ./gammastep.nix
-    ./mpvpaper.nix
     ./theming.nix
   ];
 
@@ -13,4 +12,6 @@
     # pw-play lib
     pkgs.libcanberra
   ];
+
+  services.awww.enable = true;
 }
