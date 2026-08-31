@@ -15,6 +15,16 @@
           ];
           desc = "Copiar archivos seleccionados al portapapeles del sistema";
         }
+        {
+          on = ["w" "a"];
+          run = ["shell -- awww img -t grow %h"];
+          desc = "Establecer como fondo de pantalla";
+        }
+        {
+          on = ["w" "e"];
+          run = ["cd ~/.assets/wallpapers"];
+          desc = "mirar wallpapers";
+        }
       ];
     };
 
