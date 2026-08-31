@@ -16,7 +16,6 @@
     tauon
     losslesscut-bin
     proton-vpn
-    waypaper
     recorder
   ];
 }

@@ -1,6 +1,5 @@
 {
   imports = [
-    ./waypaper.nix
     ./clipboard.nix
     ./clean-cache.nix
     ./sorter.nix
