@@ -6,6 +6,10 @@
 }: let
   enabled = config.mis-modulos.profile-principal.enable;
 in {
+  imports = [
+    ./yt-dlp.nix
+  ];
+
   config = lib.mkIf enabled {
     programs.rmpc.enable = true;
     home.packages = with pkgs; [
@@ -27,7 +31,6 @@ in {
       fd
       gh
       ffmpeg
-      yt-dlp
       sorter
       eza
       lazygit
