@@ -57,6 +57,7 @@ in {
           "viewIcons"
           "voiceDownload"
           "whoReacted"
+          "betterFolders"
         ] (name: {enable = true;});
       };
     };
