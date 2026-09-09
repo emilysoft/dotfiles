@@ -9,7 +9,10 @@
   };
 
   programs.ssh = {
+    startAgent = true;
     extraConfig = ''
+      AddKeysToAgent yes
+
       Host github.com-emilysoft
           HostName github.com
           IdentityFile ~/.ssh/id_ed25519_emilysoft
