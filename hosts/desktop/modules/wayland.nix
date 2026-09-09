@@ -17,9 +17,6 @@
       common = {
         default = ["gtk"];
       };
-      niri = {
-        "org.freedesktop.impl.portal.FileChooser" = ["thunar"];
-      };
     };
   };
 
