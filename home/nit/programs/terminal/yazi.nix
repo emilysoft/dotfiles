@@ -25,6 +25,11 @@
           run = ["cd ~/.assets/wallpapers"];
           desc = "mirar wallpapers";
         }
+        {
+          on = ["C" "c"];
+          run = ["shell -- ffmpeg -i %h -vn -acodec libmp3lame -q:a 2 %h.mp3"];
+          desc = "convertir a mp3";
+        }
       ];
     };
 
