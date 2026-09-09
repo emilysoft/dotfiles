@@ -31,7 +31,6 @@
   programs.home-manager.enable = true;
   programs.opencode.enable = true;
 
-  services.easyeffects.enable = true;
   programs.obs-studio.enable = true;
 
   home.sessionVariables = {
