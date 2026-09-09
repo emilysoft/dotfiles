@@ -13,8 +13,6 @@ in {
       enable = true;
       enabledExtensions = with spicePkgs.extensions; [
         adblockify
-        beautifulLyrics
-        shuffle
       ];
     };
   };
