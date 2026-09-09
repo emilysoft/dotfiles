@@ -3,7 +3,6 @@
     ./clipboard.nix
     ./clean-cache.nix
     ./sorter.nix
-    ./discord-rpc-manager.nix
     ./alarmas.nix
   ];
 
