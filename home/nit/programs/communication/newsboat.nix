@@ -16,12 +16,12 @@
       {url = "https://es.cointelegraph.com/rss/";}
       {url = "https://www.criptonoticias.com/feed";}
       {url = "https://techcrunch.com/feed/";}
-      {url = "http://localhost:8082/feed/category/economia/economia-nacional";}
-      {url = "http://localhost:8082/feed/category/banca";}
-      {url = "http://localhost:8082/feed/category/finanzas";}
       {url = "https://elestimulo.com/category/terremoto-en-venezuela/feed";}
       {url = "https://elestimulo.com/category/nota-de-prensa/feed";}
       {url = "https://www.tarreo.com/feed/";}
+      {url = "http://localhost:8000/feed/category/economia/economia-nacional";}
+      {url = "http://localhost:8000/feed/category/economia/economia-internacional";}
+      {url = "https://talcualdigital.com/feed";}
     ];
 
     extraConfig = ''
@@ -55,4 +55,3 @@
   };
 }
 #browser "xdg-open %u"
-
