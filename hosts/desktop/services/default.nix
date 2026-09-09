@@ -9,14 +9,13 @@
     ./vaultwarden.nix
     ./discord_bots_backup.nix
     ./firefly-iii.nix
-    #./jellyfin.nix
     ./searxng.nix
   ];
 
   sops.secrets."discord_bots/vscbot/environmentFile" = {};
   services = {
     journald.extraConfig = "SystemMaxUse=500M";
-
+    bancaynegocios-rss.enable = true;
     vscbot = {
       enable = true;
       port = 3006;

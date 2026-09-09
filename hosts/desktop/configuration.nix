@@ -7,6 +7,7 @@
   imports = [
     inputs.vscbot.nixosModules.default
     inputs.sops-nix.nixosModules.sops
+    inputs.bancaynegocios-rss.nixosModules.default
     ./hardware-configuration.nix
     ./sops.nix
     ./modules

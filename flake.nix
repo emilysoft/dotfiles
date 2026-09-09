@@ -59,6 +59,11 @@
       url = "github:SergioRibera/s4rchiso-plymouth-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    bancaynegocios-rss = {
+      url = "github:emilysoft/bancaynegocios-rss";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     nixpkgs,
