@@ -3,7 +3,7 @@
     ./niri/niri.nix
     ./eww.nix
     ./hyprlock.nix
-    ./swayidle.nix
+    ./hypridle.nix
     ./gammastep.nix
     ./theming.nix
   ];
