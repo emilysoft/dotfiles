@@ -11,13 +11,6 @@
 in {
   programs.git = {
     enable = true;
-    settings = {
-      user = {
-        name = "ghost";
-        email = "invalid@void.invalid";
-      };
-    };
-
     includes = [
       {
         condition = "gitdir:~/.dotfiles/**";
