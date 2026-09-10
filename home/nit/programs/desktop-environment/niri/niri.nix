@@ -19,6 +19,7 @@
           xkb = {
             layout = "us";
             variant = "altgr-intl";
+            options = "caps:none";
           };
           numlock = true;
         };
