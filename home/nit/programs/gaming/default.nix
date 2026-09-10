@@ -16,6 +16,7 @@ in {
       heroic
       steam
       ruffle
+      space-cadet-pinball
     ];
 
     programs.lutris.enable = true;

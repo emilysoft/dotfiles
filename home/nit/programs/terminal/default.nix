@@ -18,14 +18,13 @@ in {
       tty-clock
       cava
       ncdu
-      bottom
       unrar
       tree
       jq
       wget
       fzf
-      fastfetch
       disfetch
+      fetch
       qdirstat
       fd
       gh
