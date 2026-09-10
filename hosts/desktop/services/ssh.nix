@@ -29,4 +29,5 @@
           IdentitiesOnly yes
     '';
   };
+  services.gnome.gnome-keyring.enable = false;
 }
