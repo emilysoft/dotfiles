@@ -1,11 +1,11 @@
 {pkgs, ...}: {
   imports = [
     ./niri/niri.nix
-    ./eww.nix
     ./hyprlock.nix
     ./hypridle.nix
     ./gammastep.nix
     ./theming.nix
+    ./noctalia.nix
   ];
 
   home.packages = [

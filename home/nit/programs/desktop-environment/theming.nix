@@ -25,6 +25,7 @@
     targets = {
       nixcord.enable = false;
       hyprlock.enable = false;
+      noctalia.enable = false;
     };
     polarity = "dark";
     fonts = {

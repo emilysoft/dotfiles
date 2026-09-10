@@ -11,6 +11,7 @@
     inputs.stylix.homeModules.stylix
     inputs.niri.homeModules.niri
     inputs.nixcord.homeModules.nixcord
+    inputs.noctalia.homeModules.default
     ./programs
     ./mimeapps.nix
     ./git.nix

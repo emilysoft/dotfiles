@@ -69,6 +69,8 @@
       url = "github:Diolinux/PhotoGIMP";
       flake = false;
     };
+
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
   };
   outputs = {
     nixpkgs,
