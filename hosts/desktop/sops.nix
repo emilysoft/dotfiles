@@ -1,7 +1,9 @@
-{
+{config, ...}: let
+  user = "nit";
+in {
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/nit/.config/sops/age/keys.txt";
+    age.keyFile = "${config.users.users.${user}.home}/.config/sops/age/keys.txt";
   };
 }
