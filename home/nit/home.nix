@@ -21,6 +21,7 @@
   mis-modulos = {
     profile-principal.enable = true;
     media.enable = false;
+    media.photogimp.enable = true;
   };
 
   home = {

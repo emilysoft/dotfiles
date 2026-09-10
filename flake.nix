@@ -64,6 +64,11 @@
       url = "github:emilysoft/bancaynegocios-rss";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    photogimp = {
+      url = "github:Diolinux/PhotoGIMP";
+      flake = false;
+    };
   };
   outputs = {
     nixpkgs,

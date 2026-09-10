@@ -29,6 +29,9 @@ Used to improve the Spotify experience by removing ads and adding features that 
 ### `mpv.nix`
 Configures **MPV** as the video player with custom profiles: standard profile with taskbar progress and image viewer mode with ModernZ osc configuration. Includes modernz and thumbfast scripts. MPV is chosen for being the most powerful and configurable video player available on Linux.
 
+### `photogimp.nix`
+Applies the **PhotoGIMP** patch (fetched from `github:Diolinux/PhotoGIMP` as a flake input) to give GIMP a Photoshop-like layout: reorganized tool order, Photoshop keybindings, maximized canvas, custom splash screen and PS-styled export presets. The upstream config files are symlinked into the active GIMP config directory (derived from `pkgs.gimp.version`, e.g. `~/.config/GIMP/3.2`). The upstream `theme.css` is excluded because it is Flatpak-specific and GIMP regenerates it on startup.
+
 ### `recorder.nix`
 Defines a custom package for **recorder**, a bash script that wraps wf-recorder for screen recording. Simplifies the recording process with a single command instead of having to remember complex wf-recorder options. Installed globally through `essentials.nix`.
 

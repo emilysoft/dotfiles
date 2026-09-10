@@ -610,6 +610,22 @@
         "type": "github"
       }
     },
+    "photogimp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788593621,
+        "narHash": "sha256-opZHG/+4nJIb3k7Nzws5Mc/A3uNsU4HWV24w8pru8Qk=",
+        "owner": "Diolinux",
+        "repo": "PhotoGIMP",
+        "rev": "b3c639de87120e98b7d224ee4c9e116464cf0292",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Diolinux",
+        "repo": "PhotoGIMP",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "bancaynegocios-rss": "bancaynegocios-rss",
@@ -622,6 +638,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable_2",
+        "photogimp": "photogimp",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",

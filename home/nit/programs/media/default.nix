@@ -9,6 +9,7 @@ in {
   imports = [
     ./spicetify.nix
     ./mpv.nix
+    ./photogimp.nix
   ];
   config = lib.mkIf enabled {
     home.packages = with pkgs; [
