@@ -23,7 +23,7 @@
         # RELOJ (Gigante y grueso)
         {
           monitor = "";
-          text = "$TIME";
+          text = ''cmd[update:10000] echo "$(/run/current-system/sw/bin/date +"%I:%M %p")"'';
           color = "rgba(255, 255, 255, 1.0)";
           font_size = 100;
           font_family = "Inter ExtraBold";
@@ -38,7 +38,7 @@
         # FECHA (Arriba del reloj)
         {
           monitor = "";
-          text = ''cmd[update:10000] echo "$(d/run/current-system/sw/bin/date +"%a %d %b.")"'';
+          text = ''cmd[update:10000] echo "$(/run/current-system/sw/bin/date +"%a %d %b.")"'';
           color = "rgba(255, 255, 255, 1.0)";
           font_size = 18;
           font_family = "Inter Bold";
