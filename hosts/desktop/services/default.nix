@@ -10,6 +10,7 @@
     ./discord_bots_backup.nix
     ./firefly-iii.nix
     ./searxng.nix
+    ./sanitizer.nix
   ];
 
   sops.secrets."discord_bots/vscbot/environmentFile" = {};
