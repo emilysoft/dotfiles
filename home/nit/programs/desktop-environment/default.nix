@@ -2,7 +2,7 @@
   imports = [
     ./niri/niri.nix
     ./eww.nix
-    ./swaylock.nix
+    ./hyprlock.nix
     ./swayidle.nix
     ./gammastep.nix
     ./theming.nix

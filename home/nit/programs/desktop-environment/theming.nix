@@ -22,7 +22,10 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
-    targets.nixcord.enable = false;
+    targets = {
+      nixcord.enable = false;
+      hyprlock.enable = false;
+    };
     polarity = "dark";
     fonts = {
       serif = {

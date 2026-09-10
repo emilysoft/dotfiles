@@ -8,7 +8,7 @@
 in {
   programs.niri.settings.binds = {
     # Aplicaciones y Comandos
-    "Mod+I".action.spawn-sh = ["${pkgs.swaylock}/bin/swaylock --daemonize"];
+    "Mod+I".action.spawn-sh = ["${pkgs.hyprlock}/bin/hyprlock"];
     "Mod+O".action.spawn = [
       "${pkgs.lib.getExe new_task}"
     ];
