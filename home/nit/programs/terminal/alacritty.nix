@@ -9,14 +9,13 @@
     package = pkgs.alacritty-graphics;
     settings = lib.mkForce {
       window = {
-        opacity = 0.3;
+        opacity = 0.8;
         blur = true;
       };
 
       colors = {
         primary = {
-          #background = "#000000";
-          background = "#1c1c2b";
+          background = "#000000";
           foreground = "#cdd6f4";
           dim_foreground = "#cdd6f4";
           bright_foreground = "#cdd6f4";
