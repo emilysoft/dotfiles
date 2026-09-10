@@ -21,6 +21,10 @@ in {
         contents.user = emily;
       }
       {
+        condition = "gitdir:~/.config/**";
+        contents.user = emily;
+      }
+      {
         condition = "gitdir:~/Projects/${neetoons.name}/**";
         contents.user = neetoons;
       }
