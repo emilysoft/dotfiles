@@ -85,7 +85,7 @@
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
       animations = {
-        slowdown = 0.0;
+        slowdown = 0.5;
       };
     };
   };
