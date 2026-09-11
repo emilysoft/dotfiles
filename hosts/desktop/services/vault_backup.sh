@@ -1,39 +1,46 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 REMOTE="nit:Backups/Vaultwarden"
 DATA_DIR="/var/local/vaultwarden/backup"
 RCLONE_CONFIG="/home/nit/.config/rclone/rclone.conf"
+KEEP=7
 
 error_handler() {
     local line_no=$1
-    notify-send -u critical -t 0 -a "Vaultwarden Backup" \
-        "❌ Fallo en el Backup" \
+    echo "❌ Fallo en el backup (línea $line_no). Revisa journalctl -u vaultwarden-upload-gdrive." >&2
+    notify "critical" "❌ Fallo en el Backup" \
         "Hubo un problema en la línea $line_no. Revisa journalctl -u vaultwarden-upload-gdrive."
 }
 
 trap 'error_handler $LINENO' ERR
 
+notify() {
+    local urgency=$1 title=$2 body=$3
+
+    # Los servicios de systemd no siempre tienen notify-send ni bus de sesión:
+    # nunca deben romper el script.
+    if ! command -v notify-send >/dev/null 2>&1 || [ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ]; then
+        return 0
+    fi
+    notify-send -u "$urgency" -t 0 -a "Vaultwarden Backup" "$title" "$body" 2>/dev/null || true
+}
+
 DATE=$(date +%Y-%m-%d_%H%M)
 FILENAME="vault_${DATE}.tar.gz.gpg"
-BACKUP_TEMP="/tmp/vaultwarden_${DATE}"
 
 echo "Iniciando backup de Vaultwarden..."
 
 if [ ! -d "$DATA_DIR" ] || [ -z "$(ls -A "$DATA_DIR" 2>/dev/null)" ]; then
-    notify-send -u critical -t 0 -a "Vaultwarden Backup" \
-        "⚠️ Directorio vacío o inexistente" \
+    notify "critical" "⚠️ Directorio vacío o inexistente" \
         "No hay datos en $DATA_DIR. ¿Corrió backup-vaultwarden.service?"
     exit 1
 fi
 
-mkdir -p "$BACKUP_TEMP"
-cp -r "$DATA_DIR"/* "$BACKUP_TEMP/"
-
-tar -cz -C "$BACKUP_TEMP" . | gpg --batch --yes --passphrase "$BACKUP_PASSPHRASE" \
+# icon_cache es solo caché de favicons de vaultwarden (archivos 600 del usuario
+# vaultwarden, ilegibles para nit): se excluye. La DB y config son lo que importa.
+tar -cz --exclude='./icon_cache' -C "$DATA_DIR" . | gpg --batch --yes --passphrase "$BACKUP_PASSPHRASE" \
     --symmetric --cipher-algo AES256 -o "/tmp/$FILENAME"
-
-rm -rf "$BACKUP_TEMP"
 
 echo "Subiendo archivo cifrado a Google Drive..."
 rclone --config="$RCLONE_CONFIG" copy "/tmp/$FILENAME" "$REMOTE"
@@ -41,14 +48,16 @@ rclone --config="$RCLONE_CONFIG" copy "/tmp/$FILENAME" "$REMOTE"
 rm -f "/tmp/$FILENAME"
 
 echo "Limpiando versiones antiguas..."
-rclone --config="$RCLONE_CONFIG" lsl "$REMOTE" | grep "vault_" | sort -k2,3 | head -n -7 | awk '{print $NF}' | while read -r old_file; do
-    if [ -n "$old_file" ]; then
-        rclone --config="$RCLONE_CONFIG" delete "$REMOTE/$old_file"
-    fi
-done
+rclone --config="$RCLONE_CONFIG" lsl "$REMOTE" \
+    | grep "vault_" \
+    | sort -k2,3 \
+    | head -n -"$KEEP" | while read -r line; do
+        old_file="${line##* }"
+        if [ -n "$old_file" ]; then
+            rclone --config="$RCLONE_CONFIG" delete "$REMOTE/$old_file"
+        fi
+    done
 
-notify-send -u normal -t 0 -a "Vaultwarden Backup" \
-    "✨ Backup exitoso" \
-    "Vaultwarden está respaldado en Google Drive."
+notify "normal" "✨ Backup exitoso" "Vaultwarden está respaldado en Google Drive."
 
 echo "✨ Backup de Vaultwarden finalizado con éxito."

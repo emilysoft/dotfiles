@@ -64,6 +64,8 @@ in {
       coreutils
       gnutar
       gzip
+      gnugrep
+      libnotify
     ];
     script = "${backupScript}/bin/vaultwarden-backup-script";
     startAt = "04:00";

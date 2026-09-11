@@ -15,6 +15,8 @@ in {
       coreutils
       gzip
       gnutar
+      gnugrep
+      libnotify
     ];
     script = "${backupScript}/bin/discord_bots-backup-script";
     startAt = "04:30"; #after backing up vaultwarden
