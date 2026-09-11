@@ -14,6 +14,9 @@
     enable = true;
     package = pkgs.niri;
     settings = {
+      includes = lib.mkAfter [
+        (./blur.kdl)
+      ];
       input = {
         keyboard = {
           xkb = {
