@@ -23,7 +23,7 @@
         # RELOJ (Gigante y grueso)
         {
           monitor = "";
-          text = ''cmd[update:10000] echo "$(/run/current-system/sw/bin/date +"%I:%M %p")"'';
+          text = ''cmd[update:10000] echo "$(/run/current-system/sw/bin/date +"%H:%M")"'';
           color = "rgba(255, 255, 255, 1.0)";
           font_size = 100;
           font_family = "Inter ExtraBold";
