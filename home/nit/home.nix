@@ -16,6 +16,8 @@
     ./mimeapps.nix
     ./git.nix
     ./services/services.nix
+    ./backups/backups.nix
+    ./backups/storage.nix
   ];
 
   #programs
