@@ -8,7 +8,7 @@ TITLE=$(echo "" | fuzzel -d -p "✨ Título: "); check_cancel "$TITLE"
 ESFUERZO=$(printf "mucho\npoco" | fuzzel -d -p "✨ Esfuerzo: "); check_cancel "$ESFUERZO"
 IMPACTO=$(printf "mucho\npoco" | fuzzel -d -p "✨ Impacto: "); check_cancel "$IMPACTO"
 STATUS=$(printf "Delegada\nInbox\nBloqueado\nEn progreso\nDone" | fuzzel -d -p "✨ Status: "); check_cancel "$STATUS"
-PROYECTO=$(ls -1 "/home/nit/Documents/1_Obsidian_Vaults/Tareas/Proyectos/" | sed 's/\.[^.]*$//' | fuzzel -d -p "✨ Proyecto: "); check_cancel "$PROYECTO"
+PROYECTO=$(ls -1 "/home/nit/Documents/02_Obsidian_Vaults/Tareas/Proyectos/" | sed 's/\.[^.]*$//' | fuzzel -d -p "✨ Proyecto: "); check_cancel "$PROYECTO"
 URL=$(echo "" | fuzzel -d -p "✨ URL (opcional): ")
 CONTENT=$(echo "" | fuzzel -d -p "📝 Detalles: (opcional)")
 
@@ -25,4 +25,4 @@ URL: $URL
 [[$PROYECTO - pendientes]]
 $CONTENT"
 
-echo "$BODY" > "/home/nit/Documents/1_Obsidian_Vaults/Tareas/tareas/$TITLE.md"
+echo "$BODY" > "/home/nit/Documents/02_Obsidian_Vaults/Tareas/tareas/$TITLE.md"
