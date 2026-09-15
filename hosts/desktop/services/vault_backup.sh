@@ -18,11 +18,17 @@ trap 'error_handler $LINENO' ERR
 notify() {
     local urgency=$1 title=$2 body=$3
 
-    # Los servicios de systemd no siempre tienen notify-send ni bus de sesión:
-    # nunca deben romper el script.
-    if ! command -v notify-send >/dev/null 2>&1 || [ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ]; then
+    local user_uid
+    user_uid=$(id -u)
+
+    if [ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ]; then
+        export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${user_uid}/bus"
+    fi
+
+    if ! command -v notify-send >/dev/null 2>&1; then
         return 0
     fi
+
     notify-send -u "$urgency" -t 0 -a "Vaultwarden Backup" "$title" "$body" 2>/dev/null || true
 }
 
