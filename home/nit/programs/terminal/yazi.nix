@@ -16,19 +16,14 @@
           desc = "Copiar archivos seleccionados al portapapeles del sistema";
         }
         {
-          on = ["w" "a"];
-          run = ["shell -- awww img -t grow %h"];
-          desc = "Establecer como fondo de pantalla";
-        }
-        {
-          on = ["w" "e"];
-          run = ["cd ~/.assets/wallpapers"];
-          desc = "mirar wallpapers";
-        }
-        {
           on = ["C" "c"];
           run = ["shell -- ffmpeg -i %h -vn -acodec libmp3lame -q:a 2 %h.mp3"];
           desc = "convertir a mp3";
+        }
+        {
+          on = ["c" "a"];
+          run = ''shell --confirm "for f in %S; do zip -r \"archived_$(date +%Y%m%d_%H%M%S).zip\" \"$(basename \"$f\")\"; done"'';
+          desc = "compress files";
         }
       ];
     };
