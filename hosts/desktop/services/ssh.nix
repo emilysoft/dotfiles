@@ -9,9 +9,7 @@
   };
 
   programs.ssh = {
-    startAgent = true;
     extraConfig = ''
-      AddKeysToAgent yes
 
       Host github.com-emilysoft
           HostName github.com
@@ -29,5 +27,6 @@
           IdentitiesOnly yes
     '';
   };
-  services.gnome.gnome-keyring.enable = false;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 }
