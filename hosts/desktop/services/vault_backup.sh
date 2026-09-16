@@ -4,7 +4,7 @@ set -eo pipefail
 REMOTE="nit:Backups/Vaultwarden"
 DATA_DIR="/var/local/vaultwarden/backup"
 RCLONE_CONFIG="/home/nit/.config/rclone/rclone.conf"
-KEEP=7
+KEEP=3
 
 error_handler() {
     local line_no=$1
@@ -54,15 +54,12 @@ rclone --config="$RCLONE_CONFIG" copy "/tmp/$FILENAME" "$REMOTE"
 rm -f "/tmp/$FILENAME"
 
 echo "Limpiando versiones antiguas..."
-rclone --config="$RCLONE_CONFIG" lsl "$REMOTE" \
-    | grep "vault_" \
-    | sort -k2,3 \
-    | head -n -"$KEEP" | while read -r line; do
-        old_file="${line##* }"
-        if [ -n "$old_file" ]; then
-            rclone --config="$RCLONE_CONFIG" delete "$REMOTE/$old_file"
-        fi
-    done
+rclone --config="$RCLONE_CONFIG" lsf "$REMOTE" --include "vault_*.tar.gz.gpg" | sort | head -n -"$KEEP" | while read -r old_file; do
+    if [ -n "$old_file" ]; then
+        echo "Eliminando respaldo antiguo: $old_file"
+        rclone --config="$RCLONE_CONFIG" deletefile "$REMOTE/$old_file"
+    fi
+done
 
 notify "normal" "✨ Backup exitoso" "Vaultwarden está respaldado en Google Drive."
 
