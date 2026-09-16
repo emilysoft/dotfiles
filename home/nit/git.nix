@@ -33,11 +33,11 @@ in {
 
   sops.secrets = {
     "github/${emily.name}/ssh_key" = {
-      path = "/home/nit/.ssh/id_ed25519_${emily.name}";
+      path = "${config.home.homeDirectory}/.ssh/id_ed25519_${emily.name}";
       mode = "0600";
     };
     "github/${neetoons.name}/ssh_key" = {
-      path = "/home/nit/.ssh/id_ed25519_${neetoons.name}";
+      path = "${config.home.homeDirectory}/.ssh/id_ed25519_${neetoons.name}";
       mode = "0600";
     };
   };
