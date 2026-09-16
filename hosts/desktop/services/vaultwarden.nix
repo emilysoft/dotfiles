@@ -3,7 +3,24 @@
   pkgs,
   ...
 }: let
-  backupScript = pkgs.writeShellScriptBin "vaultwarden-backup-script" (builtins.readFile ./vault_backup.sh);
+  vaultwardenBackupScript = pkgs.writeShellApplication {
+    name = "vaultwarden-backup-script";
+
+    runtimeInputs = with pkgs; [
+      gnupg
+      rclone
+      coreutils
+      gnutar
+      gzip
+      gnugrep
+      libnotify
+    ];
+
+    text = ''
+      # shellcheck disable=SC2154
+      ${builtins.readFile ./vault_backup.sh}
+    '';
+  };
 in {
   sops.secrets = {
     "vaultwarden_key" = {};
@@ -42,32 +59,25 @@ in {
     "--operator=caddy"
     "--accept-dns=true"
   ];
+
   systemd.services.caddy.serviceConfig = {
     AmbientCapabilities = ["CAP_NET_BIND_SERVICE"];
     CapabilityBoundingSet = ["CAP_NET_BIND_SERVICE"];
   };
 
-  # Backup
   systemd.services.vaultwarden-upload-gdrive = {
     description = "Cifra y sube el backup local de Vaultwarden a Google Drive";
     after = ["network-online.target" "backup-vaultwarden.service"];
     wants = ["network-online.target"];
+
     serviceConfig = {
       Type = "oneshot";
       User = "nit";
       Group = "vaultwarden";
       EnvironmentFile = config.sops.secrets."vaultwarden-backup-env".path;
+      ExecStart = "${vaultwardenBackupScript}/bin/vaultwarden-backup-script";
     };
-    path = with pkgs; [
-      gnupg
-      rclone
-      coreutils
-      gnutar
-      gzip
-      gnugrep
-      libnotify
-    ];
-    script = "${backupScript}/bin/vaultwarden-backup-script";
+
     startAt = "04:00";
   };
 }

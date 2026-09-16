@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eo pipefail
+set -euo pipefail
 
 REMOTE="nit:Backups/sqlite"
 KEEP=3

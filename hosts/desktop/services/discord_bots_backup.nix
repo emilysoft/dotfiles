@@ -1,15 +1,8 @@
 {pkgs, ...}: let
-  backupScript = pkgs.writeShellScriptBin "discord_bots-backup-script" (builtins.readFile ./discord_bots_backup.sh);
-in {
-  systemd.user.services.discord-bots-backup = {
-    description = "Backup rotativo de Discord Bots";
-    after = ["network-online.target"];
-    wants = ["network-online.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "nit";
-    };
-    path = with pkgs; [
+  discordBotsBackup = pkgs.writeShellApplication {
+    name = "discord-bots-backup-script";
+
+    runtimeInputs = with pkgs; [
       sqlite
       rclone
       coreutils
@@ -18,7 +11,17 @@ in {
       gnugrep
       libnotify
     ];
-    script = "${backupScript}/bin/discord_bots-backup-script";
-    startAt = "04:30"; #after backing up vaultwarden
+
+    text = builtins.readFile ./discord_bots_backup.sh;
+  };
+in {
+  systemd.user.services.discord-bots-backup = {
+    description = "Backup rotativo de Discord Bots";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${discordBotsBackup}/bin/discord-bots-backup-script";
+    };
+
+    startAt = "04:30";
   };
 }
