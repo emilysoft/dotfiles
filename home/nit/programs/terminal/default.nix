@@ -8,6 +8,7 @@
 in {
   imports = [
     ./yt-dlp.nix
+    ./lazygit.nix
   ];
 
   config = lib.mkIf enabled {
@@ -31,7 +32,6 @@ in {
       ffmpeg
       sorter
       eza
-      lazygit
       cmatrix
     ];
   };
