@@ -15,7 +15,6 @@
 
   sops.secrets."discord_bots/vscbot/environmentFile" = {};
   services = {
-    journald.extraConfig = "SystemMaxUse=500M";
     bancaynegocios-rss.enable = true;
     vscbot = {
       enable = true;
