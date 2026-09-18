@@ -2,6 +2,7 @@
   imports = [
     ./clipboard.nix
     ./clean-cache.nix
+    ./clean-trash.nix
     ./sorter.nix
     ./alarmas.nix
   ];
