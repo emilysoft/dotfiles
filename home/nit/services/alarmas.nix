@@ -127,7 +127,8 @@ in {
 
             if [ "$hora" = "$NOW" ] && match_day "$dias"; then
               if [ -n "$mensaje" ]; then
-                ${pkgs.libnotify}/bin/notify-send "Alarma" "$mensaje" -u critical
+                ${pkgs.libnotify}/bin/notify-send -u "critical" -t 0 -a "Aviso" "Deberes" "$mensaje"
+
               fi
               if [ -n "$comando" ]; then
                 IFS=' ' read -ra args <<< "$comando"
