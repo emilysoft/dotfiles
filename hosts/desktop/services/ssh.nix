@@ -12,6 +12,7 @@
     extraConfig = ''
       Host *
           IdentitiesOnly yes
+          AddKeysToAgent yes
 
       Host github.com-emilysoft
           HostName github.com
