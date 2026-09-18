@@ -66,9 +66,6 @@ backup_bot() {
         fi
     done
 
-    notify "normal" "✨ Backup exitoso: $BOT_NAME" \
-        "La base de datos de tu bot ya está en el remoto."
-
     echo "✨ Backup de $BOT_NAME finalizado con éxito."
 }
 

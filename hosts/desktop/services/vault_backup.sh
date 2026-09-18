@@ -65,4 +65,4 @@ rclone --config="$RCLONE_CONFIG" lsf "$REMOTE" --include "vault_*.tar.gz.gpg" | 
     fi
 done
 
-notify "normal" "✨ Backup exitoso" "Vaultwarden está respaldado en Google Drive."
+echo "Backup completado correctamente."
