@@ -4,43 +4,26 @@ TIEMPO_MINIMO_SEGUNDOS=900
 
 es_archivo_antiguo_minimo() {
   local archivo="$1"
-  local tiempo_minimo="$2" # Tiempo en segundos
+  local tiempo_minimo="$2"
 
-  # --------------------------------------------------------------------------
-  # NOTA CLAVE:
-  # El comando 'stat' en Linux/macOS puede dar la fecha de CREACIÓN (Birth/cTime)
-  # o MODIFICACIÓN (mTime). 'find -mmin' usa mTime (modificación).
-  # Para la mayoría de descargas en curso, el tiempo de MODIFICACIÓN (mTime)
-  # es suficiente, ya que se actualiza constantemente mientras se escribe el archivo.
-  # Usaremos 'stat' y su tiempo de MODIFICACIÓN (mtime) en segundos.
-  # --------------------------------------------------------------------------
-
-  # Obtener la marca de tiempo (epoch) de la última modificación (mTime) del archivo
-  # En Linux (GNU stat): %Y
-  local mtime_epoch=$(stat -c %Y "$archivo")
-  # Obtener el tiempo actual (epoch)
-  local tiempo_actual_epoch=$(date +%s)
+  local mtime_epoch
+  mtime_epoch=$(stat -c %Y "$archivo")
+  local tiempo_actual_epoch
+  tiempo_actual_epoch=$(date +%s)
   local antiguedad=$((tiempo_actual_epoch - mtime_epoch))
 
-  # Comparar: si la antigüedad es MAYOR o IGUAL al tiempo mínimo, retorna 0 (éxito/verdadero)
   if [ "$antiguedad" -ge "$tiempo_minimo" ]; then
-    return 0 # Es lo suficientemente antiguo
+    return 0
   else
-    # Opcional: Descomentar para ver qué archivos se están omitiendo
-    # echo "Saltando archivo reciente: '$archivo' (Antigüedad: ${antiguedad}s)" >&2
-    return 1 # Es demasiado reciente
+    return 1
   fi
 }
 
-
-# ==============================================================================
-# 2. FUNCIÓN DE MOVIMIENTO SEGURO (Mover sin sobreescribir, renombrando)
-# ==============================================================================
 mover_seguro() {
-  # ... (El código de esta función es idéntico al original, no necesita cambios)
   local origen="$1"
   local destino_dir="$2"
-  local nombre_archivo=$(basename "$origen")
+  local nombre_archivo
+  nombre_archivo=$(basename "$origen")
   local destino="$destino_dir/$nombre_archivo"
 
   local nombre_base="${nombre_archivo%.*}"
@@ -61,16 +44,13 @@ mover_seguro() {
   done
 
   mv "$origen" "$nuevo_destino"
-  # echo "Movido: '$origen' -> '$nuevo_destino'"
 }
 
 # 3. CREACIÓN DE DIRECTORIOS
-# (El código de esta sección es idéntico al original, no necesita cambios)
 mkdir -p "1_Video"
 mkdir -p "2_Images/PSD"
 mkdir -p "2_Images/gif"
 mkdir -p "3_Archives"
-mkdir -p "4_Documents"
 mkdir -p "4_Documents/Word"
 mkdir -p "4_Documents/Excel"
 mkdir -p "4_Documents/PDF"
@@ -93,43 +73,35 @@ mkdir -p "GameFiles/SAMP"
 mkdir -p "GameFiles/Other"
 mkdir -p "3DModels"
 
-# 4. MOVIMIENTO DE ARCHIVOS (Con Comprobación de Antigüedad)
-
-# Mover archivos a sus respectivos directorios usando la función mover_seguro
+# 4. MOVIMIENTO DE ARCHIVOS
 for file in *; do
-  # 1. Solo procesar archivos, no directorios ni el propio script
   if [ -f "$file" ] && [ "$file" != "$(basename "$0")" ]; then
 
-    # 2. **NUEVA COMPROBACIÓN:** Verificar si el archivo es lo suficientemente antiguo (mínimo 15 minutos)
     if es_archivo_antiguo_minimo "$file" "$TIEMPO_MINIMO_SEGUNDOS"; then
 
       case "${file,,}" in
-      # ... (Todo el bloque 'case' original, solo se pega aquí la estructura por brevedad)
       # Archivos de Word
       *.docx | *.rtf)
-        mover_seguro "$file" "4. Documents/Word"
+        mover_seguro "$file" "4_Documents/Word"
         ;;
       # Archivos de Excel
       *.xlsx | *.xlsm | *.xls)
-        mover_seguro "$file" "4. Documents/Excel"
+        mover_seguro "$file" "4_Documents/Excel"
         ;;
       # PDF y Ebook
       *.pdf | *.epub)
-        mover_seguro "$file" "4. Documents/PDF"
+        mover_seguro "$file" "4_Documents/PDF"
         ;;
       # Imágenes
-      *.webp)
-        mover_seguro "$file" "2. Images"
-        ;;
-      *.png | *.apng | *.bmp | *.jpg | *.jpeg)
-        mover_seguro "$file" "2. Images"
+      *.webp | *.png | *.apng | *.bmp | *.jpg | *.jpeg)
+        mover_seguro "$file" "2_Images"
         ;;
       # GIF
       *.gif)
-      mover_seguro "$file" "2. Images/gif"
-      ;;
+        mover_seguro "$file" "2_Images/gif"
+        ;;
       *.psd)
-        mover_seguro "$file" "2. Images/PSD"
+        mover_seguro "$file" "2_Images/PSD"
         ;;
       # Scripts
       *.js | *.ts | *.tsx)
@@ -155,11 +127,11 @@ for file in *; do
         ;;
       # Archivos comprimidos
       *.7z | *.zip | *.rar | *.tar.xz | *.tgz | *.pack | *.gz)
-        mover_seguro "$file" "3. Archives"
+        mover_seguro "$file" "3_Archives"
         ;;
       # Ejecutables/Binarios
       *.exe | *.dll | *.jar | *.deb | *.apk | *.msi | *.ico | *.install | *.setup)
-        mover_seguro "$file" "7. Executables"
+        mover_seguro "$file" "7_Executables"
         ;;
       # Bases de Datos
       *.sql | *.kdbx)
@@ -175,15 +147,15 @@ for file in *; do
         ;;
       # Audio
       *.wav | *.mp3)
-        mover_seguro "$file" "5. Audio"
+        mover_seguro "$file" "5_Audio"
         ;;
       # Video
-      *.mp4 | *.mkv | *.mov | *.gif | *.webm | *.ogg)
-        mover_seguro "$file" "1. Video"
+      *.mp4 | *.mkv | *.mov | *.webm | *.ogg)
+        mover_seguro "$file" "1_Video"
         ;;
       # Archivos de texto
       *.txt | *.md | *.log | *.ini | *.json | *.yml | *.rules | *.ps1 | *.csv)
-        mover_seguro "$file" "6. TextFiles"
+        mover_seguro "$file" "6_TextFiles"
         ;;
       # Archivos Web
       *.html | *.php | *.webmanifest | *.css | *.opml)
@@ -197,15 +169,14 @@ for file in *; do
       *.blend)
         mover_seguro "$file" "3DModels"
         ;;
-      # Archivos misceláneos (no clasificados)
+      # Misceláneos
       *)
         mover_seguro "$file" "Miscellaneous"
-        ;; # ¡IMPORTANTE! He añadido esta opción para capturar el resto
+        ;;
       esac
     fi
   fi
 done
 
-# 5. LIMPIEZA Y FINALIZACIÓN
-find . -depth -type d -empty -delete
-find . -depth -type d -empty -delete
+# 5. LIMPIEZA
+find . -mindepth 1 -depth -type d -empty -delete
