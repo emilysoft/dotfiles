@@ -49,7 +49,7 @@ if [ -z "$PASSPHRASE" ]; then
     exit 1
 fi
 
-tar -cz --exclude='./icon_cache' -C "$DATA_DIR" . | gpg --batch --yes --passphrase "$PASSPHRASE" \
+tar -cz --exclude="icon_cache" --exclude="*/icon_cache/*" -C "$DATA_DIR" . | gpg --batch --yes --passphrase "$PASSPHRASE" \
     --symmetric --cipher-algo AES256 -o "/tmp/$FILENAME"
 
 echo "Subiendo archivo cifrado a Google Drive..."

@@ -25,7 +25,7 @@ in {
   sops.secrets = {
     "vaultwarden_key" = {};
     "vaultwarden-backup-env" = {
-      owner = "nit";
+      owner = "vaultwarden";
     };
   };
 
