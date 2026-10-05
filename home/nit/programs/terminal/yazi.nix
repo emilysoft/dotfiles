@@ -25,6 +25,11 @@
           run = ''shell --confirm "for f in %S; do zip -r \"archived_$(date +%Y%m%d_%H%M%S).zip\" \"$(basename \"$f\")\"; done"'';
           desc = "compress files";
         }
+        {
+          on = ["c" "e"];
+          run = ["cd ${config.home.homeDirectory}/.local/share/Trash/files/"];
+          desc = "see trash";
+        }
       ];
     };
 
