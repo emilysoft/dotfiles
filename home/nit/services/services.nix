@@ -5,6 +5,7 @@
     ./clean-trash.nix
     ./sorter.nix
     ./alarmas.nix
+    ./backups.nix
   ];
 
   mis-modulos.alarmas.enable = true;

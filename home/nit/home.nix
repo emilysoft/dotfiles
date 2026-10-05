@@ -16,7 +16,6 @@
     ./mimeapps.nix
     ./git.nix
     ./services/services.nix
-    ./backups/backups.nix
     ./backups/rclone.nix
     ./backups/storage.nix
   ];
