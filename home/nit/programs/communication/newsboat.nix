@@ -8,7 +8,6 @@
       {url = "https://computerhoy.20minutos.es/rss/software";}
       {url = "https://www.elchiguirebipolar.net/feed";}
       {url = "https://armando.info/feed";}
-      {url = "https://www.genbeta.com/feedburner.xml";}
       {url = "https://elestimulo.com/feed";}
       {url = "https://caraotadigital.net/feed";}
       {url = "https://uhnplus.com/feed/";}
@@ -16,7 +15,6 @@
       {url = "https://es.cointelegraph.com/rss/";}
       {url = "https://www.criptonoticias.com/feed";}
       {url = "https://techcrunch.com/feed/";}
-      {url = "https://elestimulo.com/category/terremoto-en-venezuela/feed";}
       {url = "https://elestimulo.com/category/nota-de-prensa/feed";}
       {url = "https://www.tarreo.com/feed/";}
       {url = "http://localhost:8000/feed/category/economia/economia-nacional";}
