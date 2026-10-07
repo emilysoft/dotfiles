@@ -45,11 +45,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    concord = {
-      url = "github:emilysoft/concord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ferdium = {
       url = "github:emilysoft/ferdium-app-flake";
       inputs.nixpkgs.follows = "nixpkgs";
