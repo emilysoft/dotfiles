@@ -25,10 +25,4 @@ in {
     ./office
     ./terminal
   ];
-
-  config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      inputs.zen-browser.packages."${system}".default
-    ];
-  };
 }

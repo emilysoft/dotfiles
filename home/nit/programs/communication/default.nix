@@ -7,6 +7,7 @@
   enabled = config.mis-modulos.profile-principal.enable;
 in {
   imports = [
+    ./zen-browser.nix
     ./vesktop.nix
     ./newsboat.nix
   ];
