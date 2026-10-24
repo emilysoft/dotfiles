@@ -5,11 +5,46 @@
 }: {
   gtk = {
     enable = true;
-    colorScheme = "dark";
     #gtk4.theme = config.gtk.theme;
+    gtk4.theme = null;
     iconTheme.package = pkgs.papirus-icon-theme.override {color = "pink";};
     iconTheme.name = "Papirus-Dark";
+    theme = {
+      name = "catppuccin-mocha-mauve-standard";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["mauve"];
+        variant = "mocha";
+      };
+    };
   };
+
+  dconf = {
+    enable = true;
+    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style.name = "kvantum";
+  };
+
+  home.packages = [
+    (pkgs.catppuccin-kvantum.override {
+      variant = "mocha";
+      accent = "mauve";
+    })
+  ];
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+    [General]
+    theme=catppuccin-mocha-mauve
+  '';
+
+  xdg.configFile."Kvantum/catppuccin-mocha-mauve".source = "${pkgs.catppuccin-kvantum.override {
+    variant = "mocha";
+    accent = "mauve";
+  }}/share/Kvantum/catppuccin-mocha-mauve";
 
   home.pointerCursor = {
     enable = true;
@@ -17,38 +52,5 @@
     name = "ManhattanCafe";
     size = 24;
     gtk.enable = true;
-  };
-
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
-    targets = {
-      nixcord.enable = false;
-      hyprlock.enable = false;
-      noctalia.enable = false;
-    };
-    polarity = "dark";
-    fonts = {
-      serif = {
-        package = pkgs.geist-font;
-        name = "Geist Sans";
-      };
-
-      sansSerif = {
-        package = pkgs.geist-font;
-        name = "Geist Sans";
-      };
-
-      monospace = {
-        package = pkgs.geist-font;
-        name = "Geist Sans";
-      };
-      emoji = {
-        #package = pkgs.twitter-color-emoji;
-        package = pkgs.joypixels;
-        #name = "Twitter Color Emoji";
-        name = "joypixels";
-      };
-    };
   };
 }

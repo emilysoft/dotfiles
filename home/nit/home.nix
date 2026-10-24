@@ -8,7 +8,6 @@
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.default
-    inputs.stylix.homeModules.stylix
     inputs.niri.homeModules.niri
     inputs.nixcord.homeModules.nixcord
     inputs.noctalia.homeModules.default

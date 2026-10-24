@@ -62,7 +62,5 @@ in {
         mpv.no_display = true;
       };
     };
-
-    stylix.targets.mangohud.enable = false;
   };
 }
