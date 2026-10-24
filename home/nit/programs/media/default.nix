@@ -15,7 +15,6 @@ in {
     home.packages = with pkgs; [
       mixxx
       lmms
-      gimp
       audacity
       pinta
       gcolor3

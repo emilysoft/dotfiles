@@ -14,11 +14,9 @@ in {
   config = lib.mkIf enabled {
     home.packages = with pkgs; [
       heroic
-      steam
       ruffle
       space-cadet-pinball
     ];
-
     programs.lutris.enable = true;
   };
 }

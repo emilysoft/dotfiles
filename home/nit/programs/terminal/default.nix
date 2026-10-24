@@ -33,6 +33,11 @@ in {
       sorter
       eza
       cmatrix
+      android-tools
+      scrcpy
+      kew
+      just
+      universal-android-debloater
     ];
   };
 }
