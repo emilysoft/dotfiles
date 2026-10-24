@@ -4,7 +4,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  system = pkgs.stdenv.hostPlatform.system;
+in {
   imports = [
     ./binds.nix
     ./window-rules.nix
@@ -82,6 +84,8 @@
         {command = ["noctalia"];}
         {command = ["${pkgs.smile}/bin/smile --start-hidden"];}
         {command = ["${pkgs.fcitx5}/bin/fcitx5 -d --replace"];}
+        {command = ["${pkgs.obsidian}/bin/obsidian"];}
+        {command = ["${inputs.zen-browser.packages."${system}".default}/bin/zen-beta"];}
       ];
 
       prefer-no-csd = true;
