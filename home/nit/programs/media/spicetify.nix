@@ -14,6 +14,9 @@ in {
       enabledExtensions = with spicePkgs.extensions; [
         adblockify
       ];
+
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
     };
   };
 }
