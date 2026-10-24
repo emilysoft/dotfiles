@@ -16,7 +16,7 @@ in {
       config = {
         useQuickCss = true;
         themeLinks = [
-          "https://catppuccin.github.io/discord/dist/catppuccin-frappe-pink.theme.css"
+          "https://catppuccin.github.io/discord/dist/catppuccin-mocha-pink.theme.css"
         ];
         frameless = true;
 
@@ -28,7 +28,7 @@ in {
           "fakeNitro"
           "noBlockedMessages"
           "voiceMessages"
-          "tenorGifSearch"
+          "gifProviderSwitcher"
           "alwaysTrust"
           "anonymiseFileNames"
           "clearUrls"
