@@ -12,19 +12,19 @@
     startAgent = true;
     extraConfig = ''
       Host *
-          IdentitiesOnly yes
+        IdentitiesOnly yes
 
       Host github.com-emilysoft
-          HostName github.com
-          IdentityFile ~/.ssh/id_ed25519_emilysoft
+        HostName github.com
+        IdentityFile ~/.ssh/id_ed25519_emilysoft
 
       Host codeberg.org-emilysoft
-          HostName codeberg.org
-          IdentityFile ~/.ssh/id_ed25519_emilysoft
+        HostName codeberg.org
+        IdentityFile ~/.ssh/id_ed25519_emilysoft
 
       Host github.com-neetoons
-          HostName github.com
-          IdentityFile ~/.ssh/id_ed25519_neetoons
+        HostName github.com
+        IdentityFile ~/.ssh/id_ed25519_neetoons
     '';
   };
 
