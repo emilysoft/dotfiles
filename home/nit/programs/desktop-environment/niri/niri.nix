@@ -82,8 +82,8 @@ in {
 
       spawn-at-startup = [
         {command = ["noctalia"];}
-        {command = ["${pkgs.smile}/bin/smile --start-hidden"];}
-        {command = ["${pkgs.fcitx5}/bin/fcitx5 -d --replace"];}
+        {command = ["${pkgs.vesktop}/bin/vesktop"];}
+        {command = ["${pkgs.spotify}/bin/spotify"];}
         {command = ["${pkgs.obsidian}/bin/obsidian"];}
         {command = ["${inputs.zen-browser.packages."${system}".default}/bin/zen-beta"];}
       ];
