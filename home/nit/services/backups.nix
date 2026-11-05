@@ -43,6 +43,7 @@
         ".obsidian/workspace.json"
         "--exclude"
         ".obsidian/.trash/**"
+        "--force"
       ]
       else [];
 
