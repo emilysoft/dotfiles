@@ -40,11 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ferdium = {
-      url = "github:emilysoft/ferdium-app-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     mac-style-plymouth = {
       url = "github:SergioRibera/s4rchiso-plymouth-theme";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +55,11 @@
       flake = false;
     };
 
+    loqtts = {
+      url = "github:emilysoft/loqtts-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
   };
   outputs = {
@@ -70,7 +70,6 @@
     system = "x86_64-linux";
     shared-overlays = [
       inputs.niri.overlays.niri
-      inputs.ferdium.overlays.default
       inputs.mac-style-plymouth.overlays.default
       (import ./home/nit/programs/overlays.nix {inherit inputs;})
     ];
@@ -81,6 +80,7 @@
         modules = [
           home-manager.nixosModules.home-manager
           inputs.chaotic.nixosModules.default
+          inputs.loqtts.nixosModules.default
           ./hosts/desktop/configuration.nix
           {
             nixpkgs = {
@@ -91,6 +91,7 @@
                 allowUnfreePredicate = pkg:
                   builtins.elem (nixpkgs.lib.getName pkg) [
                     "joypixels"
+                    "loqtts"
                   ];
               };
             };
