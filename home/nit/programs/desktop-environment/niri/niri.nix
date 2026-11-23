@@ -83,9 +83,10 @@ in {
       spawn-at-startup = [
         {command = ["noctalia"];}
         {command = ["${pkgs.vesktop}/bin/vesktop"];}
-        {command = ["${pkgs.spotify}/bin/spotify"];}
+        {command = ["spotify"];}
         {command = ["${pkgs.obsidian}/bin/obsidian"];}
         {command = ["${inputs.zen-browser.packages."${system}".default}/bin/zen-beta"];}
+        {command = ["${pkgs.gnome-pomodoro}/bin/gnome-pomodoro"];}
       ];
 
       prefer-no-csd = true;
