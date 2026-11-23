@@ -8,7 +8,6 @@
     ./xwayland-satellite.nix
     ./vaultwarden.nix
     ./discord_bots_backup.nix
-    ./firefly-iii.nix
     ./searxng.nix
     ./sanitizer.nix
   ];
