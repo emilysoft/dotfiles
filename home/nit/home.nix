@@ -22,7 +22,7 @@
   #programs
   mis-modulos = {
     profile-principal.enable = true;
-    media.enable = false;
+    media.enable = true;
     media.photogimp.enable = true;
   };
 
