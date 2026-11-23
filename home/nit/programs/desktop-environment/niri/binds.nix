@@ -27,7 +27,7 @@ in {
     "Mod+B".action.spawn-sh = ["xdg-open https://www.youtube.com/feed/history"];
     "Mod+Alt+Space".action.spawn-sh = ["choice=$(printf 'Apagar\\nSuspender\\nReiniciar' | fuzzel --dmenu --prompt='Acción: '); case \"$choice\" in 'Apagar') systemctl poweroff ;; 'Suspender') systemctl suspend ;; 'Reiniciar') systemctl reboot ;; esac"];
     "Mod+A".action.spawn-sh = ["choice=$(printf 'Conectar\\nDesconectar' | fuzzel --dmenu --prompt='Acción: '); case \"$choice\" in 'Conectar') warp-cli connect ;; 'Desconectar') warp-cli disconnect ;; esac"];
-    "Mod+S".action.spawn-sh = ["fuzzel"];
+    "Mod+S".action.spawn-sh = ["noctalia msg panel-toggle launcher"];
     "Mod+Shift+S".action.spawn-sh = ["smile"];
 
     "Mod+E".action.spawn-sh = ["alacritty -e yazi"];
@@ -35,11 +35,23 @@ in {
     "Mod+X".action.spawn-sh = ["alacritty"];
     "Mod+Shift+X".action.spawn-sh = ["alacritty -e zellij"];
     "Mod+T".action.spawn-sh = ["cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"];
-    "Mod+KP_Up".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0 && pw-play ${volume_control}"];
-    "Mod+KP_Down".action.spawn-sh = ["wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pw-play ${volume_control}"];
+
+    # Control de Reproducción
+    "Mod+KP_Right".action.spawn-sh = ["${pkgs.playerctl}/bin/playerctl next"];
+    "Mod+KP_Left".action.spawn-sh = ["${pkgs.playerctl}/bin/playerctl previous"];
+    "Mod+KP_Begin".action.spawn-sh = ["${pkgs.playerctl}/bin/playerctl play-pause"];
+
+    "XF86AudioRaiseVolume".action.spawn-sh = ["noctalia msg volume-up"];
+    "XF86AudioLowerVolume".action.spawn-sh = ["noctalia msg volume-down"];
+    "XF86AudioMute".action.spawn-sh = ["noctalia msg volume-mute"];
+    "XF86MonBrightnessUp".action.spawn-sh = ["noctalia msg brightness-up"];
+    "XF86MonBrightnessDown".action.spawn-sh = ["noctalia msg brightness-down"];
+
+    "Mod+KP_Up".action.spawn-sh = ["noctalia msg volume-up"];
+    "Mod+KP_Down".action.spawn-sh = ["noctalia msg volume-down"];
+    #"XF86AudioMute".action.spawn-sh = [ "noctalia msg volume-mute"];
 
     # Navegación y Layout
-
     "Mod+Space".action.toggle-overview = {};
     "Mod+Q".action.close-window = {};
     "Mod+Left".action.focus-column-left = {};
@@ -87,7 +99,7 @@ in {
     # Capturas
     "Mod+P".action.spawn-sh = ["recorder"];
     "Print".action.screenshot = {};
-    "Mod+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -t png -g \"$(slurp)\" - | satty --filename - -o ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"];
+    "Mod+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -t png -g \"$(slurp)\" - | satty --filename - -o ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png  --annotation-size-factor 0.5"];
     "Mod+Ctrl+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -g \"0,0 1440x900\" - | tee ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy"];
 
     # Utilidades Nix/Web
@@ -96,11 +108,6 @@ in {
     "Mod+Shift+G".action.spawn-sh = ["xdg-open https://gemini.google.com"];
     "Mod+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://search.nixos.org/packages?query={}'"];
     "Mod+Shift+N".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open 'https://search.nixos.org/options?channel=unstable&query={}&source=home_manager&type=options'"];
-
-    # Control de Reproducción
-    "Mod+KP_Right".action.spawn-sh = ["playerctl next"];
-    "Mod+KP_Left".action.spawn-sh = ["playerctl previous"];
-    "Mod+KP_Begin".action.spawn-sh = ["playerctl play-pause"];
 
     "Mod+Shift+Q".action.quit = {};
     "Ctrl+Alt+Delete".action.quit = {};
