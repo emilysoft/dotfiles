@@ -13,6 +13,7 @@ in {
   ];
 
   config = lib.mkIf enabled {
+    programs.librewolf.enable = true;
     home.packages = with pkgs; [
       ferdium
       telegram-desktop
