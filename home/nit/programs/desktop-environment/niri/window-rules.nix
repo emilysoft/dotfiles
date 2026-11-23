@@ -15,12 +15,16 @@
         {app-id = "zen-beta";}
         {app-id = "Alacritty";}
         {app-id = "easyeffects";}
-        {app-id = "obsidian";}
+        {app-id = "lutris";}
+        {app-id = "Tauon";}
         {app-id = "qbittorrent";}
-        {app-id = "elisa";}
         {app-id = "swayimg";}
       ];
       default-column-width = {proportion = 1.0;};
+    }
+    {
+      matches = [{app-id = "obsidian";}];
+      open-fullscreen = true;
     }
     {
       matches = [
@@ -28,18 +32,6 @@
         {app-id = "proton";}
       ];
       open-floating = false;
-    }
-    {
-      matches = [{app-id = "^org\\.wezfurlong\\.wezterm$";}];
-      default-column-width = {};
-    }
-    {
-      matches = [
-        {app-id = "smile$";}
-      ];
-      open-floating = true;
-      default-column-width = {fixed = 316;};
-      default-window-height = {fixed = 410;};
     }
     {
       open-floating = true;
