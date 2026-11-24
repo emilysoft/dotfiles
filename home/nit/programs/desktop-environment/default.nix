@@ -13,5 +13,6 @@
     pkgs.libcanberra
   ];
 
-  services.awww.enable = true;
+  programs.fuzzel.enable = true;
+  programs.swayimg.enable = true;
 }
