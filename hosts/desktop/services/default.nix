@@ -14,6 +14,7 @@
 
   sops.secrets."discord_bots/vscbot/environmentFile" = {};
   services = {
+    cliphist.enable = true;
     bancaynegocios-rss.enable = true;
     vscbot = {
       enable = true;
