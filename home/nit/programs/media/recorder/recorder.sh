@@ -134,7 +134,7 @@ start_recording() {
     echo "$VIDEOS_DIR/$FILENAME" >> "$METADATA_FILE"
 
     notify-send --app-name="Recording 🔴" "Grabación Iniciada" "PID: $RECORDER_PID\nArchivo: $FILENAME"
-    echo "Grabación iniciada (PID: $RECORDER_PID). Detenga con 'Stop'."
+    echo "Grabación iniciada (PID: $RECORDER_PID). Ejecuta el script de nuevo para detener."
 }
 
 # Función para detener la grabación
@@ -176,19 +176,19 @@ stop_recording() {
     cleanup_metadata # Usar la nueva función de limpieza
 }
 
-# --- LÓGICA PRINCIPAL ---
+# --- LÓGICA PRINCIPAL (toggle) ---
 
-# Usar fuzzel para elegir entre Start y Stop
-ACTION=$(echo -e "Start\nStop" | fuzzel --dmenu -p "Record:")
-
-case "$ACTION" in
-    Start)
-        start_recording
-        ;;
-    Stop)
+# Si hay una grabación activa, detenerla; si no, iniciar.
+if [ -d "$METADATA_DIR" ] && [ -f "$METADATA_FILE" ]; then
+    RECORDER_PID=$(head -n 1 "$METADATA_FILE" 2>/dev/null)
+    if [ -n "$RECORDER_PID" ] && kill -0 "$RECORDER_PID" 2>/dev/null; then
         stop_recording
-        ;;
-    *)
         exit 0
-        ;;
-esac
+    else
+        # Metadatos obsoletos/incompletos: limpiar y continuar a iniciar
+        echo "Advertencia: Se encontró una grabación inactiva/fallida. Limpiando metadatos..."
+        cleanup_metadata
+    fi
+fi
+
+start_recording
