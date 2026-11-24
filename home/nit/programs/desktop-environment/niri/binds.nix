@@ -23,6 +23,7 @@ in {
     "Mod+Y".action.spawn-sh = ["echo '' | fuzzel --dmenu | xargs -I{} xdg-open https://www.youtube.com/results?search_query={}"];
     # YouTube watch later
     "Mod+Shift+Y".action.spawn-sh = ["xdg-open https://www.youtube.com/playlist?list=WL"];
+    "Mod+U".action.spawn-sh = ["xdg-open https://nixos.siren-larch.ts.net"];
     # YouTube history
     "Mod+B".action.spawn-sh = ["xdg-open https://www.youtube.com/feed/history"];
     "Mod+Alt+Space".action.spawn-sh = ["choice=$(printf 'Apagar\\nSuspender\\nReiniciar' | fuzzel --dmenu --prompt='Acción: '); case \"$choice\" in 'Apagar') systemctl poweroff ;; 'Suspender') systemctl suspend ;; 'Reiniciar') systemctl reboot ;; esac"];
@@ -98,9 +99,9 @@ in {
 
     # Capturas
     "Mod+P".action.spawn-sh = ["recorder"];
-    "Print".action.screenshot = {};
-    "Mod+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -t png -g \"$(slurp)\" - | satty --filename - -o ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png  --annotation-size-factor 0.5"];
-    "Mod+Ctrl+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -g \"0,0 1440x900\" - | tee ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy"];
+    "Mod+Print".action.screenshot = {};
+    "Print".action.screenshot-screen = {};
+    "Mod+Shift+Print".action.spawn-sh = ["mkdir -p ${config.xdg.configHome}/Pictures/screenshots && grim -t png 0g \"$(slurp)\" - | satty --filename - -o ~/Pictures/screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png  --annotation-size-factor 0.5"];
 
     # Utilidades Nix/Web
 
